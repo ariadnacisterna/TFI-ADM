@@ -23,7 +23,7 @@ public class Empleado {
         @Column(unique = true, nullable = false)
         private Integer idempleado;
         @Column(unique = true, nullable = false)
-        private Long CUIL ;
+        private Long cuil ;
         @Column(nullable = false, length = 45)
         private String nombre_completo;
         @Column(nullable = false, length = 45)

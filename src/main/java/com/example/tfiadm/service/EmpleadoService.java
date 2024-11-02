@@ -14,7 +14,6 @@ import com.example.tfiadm.repository.LocalidadRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionUsageException;
 
 import java.util.List;
 
@@ -32,12 +31,12 @@ public class EmpleadoService {
         Localidad localidad = localidadRepository.findById(request.getLocalidadId())
                 .orElseThrow(() -> new LocalidadNotFoundException("Localidad not Found"));
 
-        if (empleadoRepository.findByCUIL(request.getCUIL()).isPresent()) {
+        if (empleadoRepository.findByCuil(request.getCUIL()).isPresent()) {
             throw new CUILAlreadyInUseException("CUIL Already In Use");
         }
 
         var empleado = Empleado.builder()
-                .CUIL(request.getCUIL())
+                .cuil(request.getCUIL())
                 .nombre_completo(request.getNombre_completo())
                 .direccion(request.getDireccion())
                 .bod(request.getBod())
@@ -54,7 +53,7 @@ public class EmpleadoService {
                 .toList();
     }
     public EmpleadoResponse getEmpleadoByCUIL(Long CUIL) throws EmpleadoNotFoundException {
-        Empleado empleado = empleadoRepository.findByCUILAndBorradoFalse(CUIL)
+        Empleado empleado = empleadoRepository.findByCuilAndBorradoFalse(CUIL)
                 .orElseThrow(() -> new EmpleadoNotFoundException("Empleado con CUIL " + CUIL + " no encontrado o borrado"));
 
         return new EmpleadoResponse(empleado);
@@ -65,7 +64,7 @@ public class EmpleadoService {
             throw new ErrorSintaxisException("Todos los campos son obligatorios.");
         }
 
-        Empleado empleado =empleadoRepository.findByCUIL(CUIL)
+        Empleado empleado =empleadoRepository.findByCuil(CUIL)
                 .orElseThrow(() -> new EmpleadoNotFoundException("Empleado Not Found"));
 
         Localidad localidad = localidadRepository.findById(request.getLocalidadId())
@@ -83,7 +82,7 @@ public class EmpleadoService {
     }
     @Transactional
     public EmpleadoResponse deleteEmpleado(Long CUIL) throws EmpleadoNotFoundException {
-        Empleado empleado = empleadoRepository.findByCUIL(CUIL)
+        Empleado empleado = empleadoRepository.findByCuil(CUIL)
                 .orElseThrow(() -> new EmpleadoNotFoundException("Empleado Not Found"));
          empleado.setBorrado(true);
          Empleado deletedEmpleado = empleadoRepository.save(empleado);
