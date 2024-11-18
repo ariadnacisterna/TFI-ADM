@@ -29,10 +29,10 @@ public class EmpleadoService {
         }
 
         Localidad localidad = localidadRepository.findById(request.getLocalidadId())
-                .orElseThrow(() -> new LocalidadNotFoundException("Localidad not Found"));
+                .orElseThrow(() -> new LocalidadNotFoundException("Localidad no encontrada"));
 
         if (empleadoRepository.findByCuil(request.getCUIL()).isPresent()) {
-            throw new CUILAlreadyInUseException("CUIL Already In Use");
+            throw new CUILAlreadyInUseException("CUIL ya se encuentra registrado");
         }
 
         var empleado = Empleado.builder()

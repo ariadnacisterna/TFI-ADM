@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/adm/cliente")
 @RequiredArgsConstructor
@@ -18,7 +20,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping("/crear")
+    @PostMapping()
     public ResponseEntity<String> crearCliente(@RequestBody ClienteRequest clienteRequest) {
         try {
             clienteService.crearCliente(clienteRequest);
@@ -29,7 +31,7 @@ public class ClienteController {
     }
 
 
-    @PutMapping("/modificar/{cuil}")
+    @PutMapping("/{cuil}")
     public ResponseEntity<String> modificarCliente(@PathVariable("cuil") Long cuil, @RequestBody ClienteRequest clienteRequest){
         try {
             clienteService.modificarCliente(cuil, clienteRequest);
@@ -39,7 +41,7 @@ public class ClienteController {
         }
     }
 
-    @DeleteMapping("/eliminar/{cuil}")
+    @DeleteMapping("{cuil}")
     public ResponseEntity<String> eliminarCliente(@PathVariable("cuil") Long cuil){
         try{
             clienteService.eliminarCliente(cuil);
@@ -49,11 +51,16 @@ public class ClienteController {
         }
     }
 
-    @GetMapping("/buscar/{cuil}")
+    @GetMapping("/{cuil}")
     public ResponseEntity<ClienteResponse> verificarCliente(@PathVariable Long cuil) throws Exception {
         Cliente cliente = clienteService.buscarCliente(cuil);
         ClienteResponse response = new ClienteResponse(cliente);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping()
+    public List<ClienteResponse> listarClientes(){
+        return clienteService.buscarClientes();
     }
 
 }

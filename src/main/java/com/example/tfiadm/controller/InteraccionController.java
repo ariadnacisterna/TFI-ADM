@@ -17,13 +17,13 @@ public class InteraccionController {
 
     private final InteraccionService interaccionService;
 
-    @PostMapping("/crear")
+    @PostMapping()
     public ResponseEntity<InteraccionResponse> crearInteraccion(@RequestBody InteraccionRequest interaccionRequest) {
         InteraccionResponse response = interaccionService.crearInteraccion(interaccionRequest);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/buscar/{clienteId}")
+    @GetMapping("/{clienteId}")
     public ResponseEntity<List<InteraccionResponse>> consultarHistorial(@PathVariable Long clienteId) {
         List<InteraccionResponse> historial = interaccionService.consultarHistorial(clienteId);
         return ResponseEntity.ok(historial);

@@ -19,6 +19,8 @@ import java.util.List;
 public class EmpleadoController {
     private final EmpleadoService empleadoService;
 
+
+
     @PostMapping()
     public EmpleadoResponse create(@RequestBody EmpleadoRequest request) throws CUILAlreadyInUseException, LocalidadNotFoundException, ErrorSintaxisException {
         return empleadoService.create(request);
@@ -30,7 +32,7 @@ public class EmpleadoController {
     }
 
     @GetMapping("/{CUIL}")
-    public EmpleadoResponse getEmpleadoByCUIL(@PathVariable Long CUIL) throws EmpleadoNotFoundException {
+    public EmpleadoResponse getEmpleadoByCUIL(Long CUIL) throws EmpleadoNotFoundException {
         return empleadoService.getEmpleadoByCUIL(CUIL);
     }
 

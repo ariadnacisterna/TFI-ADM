@@ -1,6 +1,7 @@
 package com.example.tfiadm.service;
 
 import com.example.tfiadm.dto.ClienteRequest;
+import com.example.tfiadm.dto.ClienteResponse;
 import com.example.tfiadm.exception.CUILAlreadyInUseException;
 import com.example.tfiadm.exception.ErrorSintaxisException;
 import com.example.tfiadm.exception.LocalidadNotFoundException;
@@ -11,6 +12,7 @@ import com.example.tfiadm.repository.LocalidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -92,4 +94,9 @@ public class ClienteService {
                 .orElseThrow(() -> new Exception("Cliente no encontrado"));
     }
 
+    public List<ClienteResponse> buscarClientes()  {
+        return clienteRepository.findAll().stream()
+                .map(ClienteResponse::new)
+                .toList();
+    }
 }
