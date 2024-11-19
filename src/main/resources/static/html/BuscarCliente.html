@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Cliente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Styles/IndexStyle.css"> <!-- Enlace al archivo CSS personalizado -->
+    <link rel="stylesheet" href="../Styles/BuscarClienteStyle.css">
+
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container justify-content-center">
+
+        <!-- Botón hamburguesa alineado a la izquierda -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Logo centrado -->
+        <a class="navbar-brand mx-auto" href="index.html" id="logo">
+            <img src="../img/Logo2.png" alt="Logo" width="100">
+        </a>
+
+        <!-- Contenido del menú hamburguesa (enlaces) -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="GestionarCliente.html">Gestionar Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#gestionar-proveedores">Gestionar Proveedores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#gestionar-empleados">Gestionar Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#salir">Salir</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+  </nav>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Buscar Cliente</h1> <!-- Título centrado -->
+        <!-- Formulario de búsqueda por DNI -->
+        <form id="buscar-cliente-form">
+            <div class="mb-3">
+                <h4>DNI</h1>
+                <input type="text" class="form-control" id="dni" placeholder="Ingrese DNI" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar Cliente</button>
+        </form>
+
+        <!-- Sección de resultados de búsqueda -->
+        <div id="resultados" class="mt-4" style="display: none;">
+
+            <div class="d-flex justify-content-between align-items-start">
+                <!-- Datos del Cliente (lado izquierdo) -->
+                <div class="cliente-data">
+                  <h2>Datos del Cliente</h2>
+                    <form>
+                        <div class="mb-2">
+                            <label for="cuil" class="form-label">CUIL</label>
+                            <input type="text" class="form-control" id="cuil" value="20-12345678-9" readonly>
+                        </div>
+                        <div class="mb-2">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" value="Juan Perez">
+                        </div>
+                        <div class="mb-2">
+                            <label for="fecha-nacimiento" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="fecha-nacimiento" value="1985-04-15">
+                        </div>
+                        <div class="mb-2">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" value="juan.perez@example.com">
+                        </div>
+                        <div class="mb-2">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" value="123456789">
+                        </div>
+                        <div class="mb-2">
+                            <label for="direccion" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="direccion" value="Calle Falsa 123">
+                        </div>
+                        <div class="mb-2">
+                            <label for="localidad" class="form-label">Localidad</label>
+                            <input type="text" class="form-control" id="localidad" value="San Miguel">
+                        </div>
+                        <div class="mb-2">
+                            <label for="provincia" class="form-label">Provincia</label>
+                            <input type="text" class="form-control" id="provincia" value="Buenos Aires">
+                        </div>
+                        <div class="mb-2">
+                            <label for="pais" class="form-label">País</label>
+                            <input type="text" class="form-control" id="pais" value="Argentina">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Botones de acción (lado derecho) -->
+                <div class="cliente-actions d-flex flex-column gap-2">
+                  <button type="button" class="btn btn-success btn-">Actualizar informacion</button>
+                    <button type="button" class="btn btn-primary">Historial de Interacciones</button>
+                    <button type="button" class="btn btn-primary">Historial de Ventas</button>
+                    <button type="button" class="btn btn-primary">Gestionar Pago</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white text-center py-4">
+      <div class="container">
+          <p class="mb-1">© 2024 Plataforma de Gestión. Todos los derechos reservados.</p>
+          <p class="mb-0">Contacto: <a href="mailto:soporte@empresa.com" class="text-light">soporte@empresa.com</a> | Teléfono: <a href="tel:+1234567890" class="text-light">+123 456 7890</a></p>
+          <div class="mt-3">
+              <a href="#" class="text-light me-3"><i class="fab fa-facebook fa-lg"></i></a>
+              <a href="#" class="text-light me-3"><i class="fab fa-twitter fa-lg"></i></a>
+              <a href="#" class="text-light me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+              <a href="#" class="text-light"><i class="fab fa-instagram fa-lg"></i></a>
+          </div>
+      </div>
+  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/clienteCrear.js"></script>
+</body>
+</html>

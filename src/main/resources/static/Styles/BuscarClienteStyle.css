@@ -1,0 +1,15 @@
+  /* Reducir el espacio vertical de los campos */
+  .form-control,
+  .form-label {
+      font-size: 0.9rem;
+  }
+
+  /* Ajuste de ancho y espaciado para los resultados */
+  .cliente-data {
+      width: 50%; /* Reducir ancho */
+      padding-right: 10px;
+  }
+  .cliente-actions {
+      width: 50%; /* Reducir ancho de los botones */
+  }
+ 
