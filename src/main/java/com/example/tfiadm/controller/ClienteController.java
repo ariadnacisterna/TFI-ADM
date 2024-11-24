@@ -20,7 +20,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping()
+    @PostMapping("/crear")
     public ResponseEntity<String> crearCliente(@RequestBody ClienteRequest clienteRequest) {
         try {
             clienteService.crearCliente(clienteRequest);
@@ -58,7 +58,7 @@ public class ClienteController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping()
+    @GetMapping("/todos")
     public List<ClienteResponse> listarClientes(){
         return clienteService.buscarClientes();
     }

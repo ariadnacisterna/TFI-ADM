@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class ProvinciaRequest {
+
     private String nombre;
+
     @JsonProperty("pais_idpais")
-    private Integer pais_idpais;
+    private Integer paisId;
 }

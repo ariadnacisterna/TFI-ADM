@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class LocalidadRequest {
     private String nombre;
     @JsonProperty("provincia_idprovincia")
-    private Integer provincia_idprovincia;
+    private Integer provinciaId;
 }

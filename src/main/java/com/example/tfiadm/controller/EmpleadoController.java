@@ -32,7 +32,7 @@ public class EmpleadoController {
     }
 
     @GetMapping("/{CUIL}")
-    public EmpleadoResponse getEmpleadoByCUIL(Long CUIL) throws EmpleadoNotFoundException {
+    public EmpleadoResponse getEmpleadoByCUIL(@PathVariable Long CUIL) throws EmpleadoNotFoundException {
         return empleadoService.getEmpleadoByCUIL(CUIL);
     }
 
