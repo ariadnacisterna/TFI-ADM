@@ -12,9 +12,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class DetalleFacturaRequest {
+
     @JsonProperty("producto_id")
     private Integer productoId;
+
     private Integer cantidad;
+
     @JsonProperty("factura_id")
     private Integer facturaId;
+
+    @JsonProperty("venta_id")
+    public Integer ventaId;
 }

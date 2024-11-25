@@ -8,6 +8,8 @@ import com.example.tfiadm.service.PagoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/adm/pagos")
 @RequiredArgsConstructor
@@ -16,7 +18,7 @@ public class PagoController {
     private final PagoService pagoService;
 
     @PostMapping()
-    public PagoResponse create(@RequestBody PagoRequest request) throws FacturaNotFoundException, ErrorSintaxisException {
+    public PagoResponse create(@RequestBody PagoRequest request) throws FacturaNotFoundException, ErrorSintaxisException, IOException {
         return pagoService.create(request);
     }
 

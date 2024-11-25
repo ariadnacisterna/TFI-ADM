@@ -16,7 +16,7 @@ public class ProductoResponse {
     private Integer idproducto;
     private String descripcion;
     @JsonProperty("precio_unitario")
-    private Integer precio_unitario;
+    private Double precio_unitario;
 
     public ProductoResponse(Producto producto) {
         this.idproducto=producto.getIdproducto();

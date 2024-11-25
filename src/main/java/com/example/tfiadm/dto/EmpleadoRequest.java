@@ -24,4 +24,5 @@ public class EmpleadoRequest {
     private String mail;
     @JsonProperty("localidad_id")
     private Integer localidadId;
+    private boolean esGerente;
 }

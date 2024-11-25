@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,6 +17,7 @@ import lombok.NoArgsConstructor;
 public class FacturaRequest {
     @JsonProperty("tipo")
     private String tipo;
+
     @JsonProperty("venta_id")
     private Integer ventaId;
 }

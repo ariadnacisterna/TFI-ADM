@@ -42,11 +42,13 @@ public class EmpleadoService {
                 .bod(request.getBod())
                 .mail(request.getMail())
                 .localidad(localidad)
+                .esGerente(request.isEsGerente())
                 .build();
 
         Empleado savedEmpleado = empleadoRepository.save(empleado);
         return new EmpleadoResponse(savedEmpleado);
     }
+
     public List<EmpleadoResponse> getAll(){
         return empleadoRepository.findAllByBorradoFalse().stream()
                 .map(EmpleadoResponse::new)
@@ -75,6 +77,7 @@ public class EmpleadoService {
                 empleado.setLocalidad(localidad);
                 empleado.setMail(request.getMail());
                 empleado.setBod(request.getBod());
+                empleado.setEsGerente(request.isEsGerente());
 
                 Empleado updatedEmpleado = empleadoRepository.save(empleado);
 
@@ -88,5 +91,4 @@ public class EmpleadoService {
          Empleado deletedEmpleado = empleadoRepository.save(empleado);
          return new EmpleadoResponse(deletedEmpleado);
     }
-
 }

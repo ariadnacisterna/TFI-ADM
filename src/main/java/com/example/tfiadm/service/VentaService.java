@@ -1,10 +1,14 @@
 package com.example.tfiadm.service;
 
-import com.example.tfiadm.dto.CompraResponse;
 import com.example.tfiadm.dto.VentaRequest;
 import com.example.tfiadm.dto.VentaResponse;
-import com.example.tfiadm.exception.*;
-import com.example.tfiadm.model.*;
+import com.example.tfiadm.exception.ClienteNotFoundException;
+import com.example.tfiadm.exception.EmpleadoNotFoundException;
+import com.example.tfiadm.exception.ErrorSintaxisException;
+import com.example.tfiadm.exception.VentaNotFoundException;
+import com.example.tfiadm.model.Cliente;
+import com.example.tfiadm.model.Empleado;
+import com.example.tfiadm.model.Venta;
 import com.example.tfiadm.repository.ClienteRepository;
 import com.example.tfiadm.repository.EmpleadoRepository;
 import com.example.tfiadm.repository.VentaRepository;
@@ -16,7 +20,6 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-
 public class VentaService {
 
     private final VentaRepository ventaRepository;
@@ -24,11 +27,12 @@ public class VentaService {
     private final EmpleadoRepository empleadoRepository;
 
     public VentaResponse create(VentaRequest request) throws EmpleadoNotFoundException, ClienteNotFoundException, ErrorSintaxisException {
-        if(request.getClienteCUIL() == null || request.getEmpleadoCUIL() == null) {
+        if (request.getClienteCUIL() == null || request.getEmpleadoCUIL() == null) {
             throw new ErrorSintaxisException("Todos los campos son obligatorios.");
         }
+
         Cliente cliente = clienteRepository.findByCuil(request.getClienteCUIL())
-                 .orElseThrow(() -> new ClienteNotFoundException("Cliente no encontrado"));
+                .orElseThrow(() -> new ClienteNotFoundException("Cliente no encontrado"));
 
         Empleado empleado = empleadoRepository.findByCuil(request.getEmpleadoCUIL())
                 .orElseThrow(() -> new EmpleadoNotFoundException("Empleado no encontrado"));
@@ -59,9 +63,10 @@ public class VentaService {
         return ventas.stream().map(VentaResponse::new)
                 .collect(Collectors.toList());
     }
+
     public VentaResponse findById(Integer id) throws VentaNotFoundException {
         Venta venta = ventaRepository.findByIdventa(id)
-                .orElseThrow(() -> new VentaNotFoundException("Venta no encontrado"));
+                .orElseThrow(() -> new VentaNotFoundException("Venta no encontrada"));
         return new VentaResponse(venta);
     }
 }

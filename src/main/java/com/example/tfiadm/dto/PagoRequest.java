@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 public class PagoRequest {
     private String metodo;
-    private Integer total;
+    private Double total;
     @JsonProperty("factura_id")
     private Integer facturaId;
 }

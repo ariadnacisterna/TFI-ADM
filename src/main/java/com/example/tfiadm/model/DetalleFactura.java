@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,15 +20,22 @@ public class DetalleFactura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Integer iddetalle;
+
     @Column(nullable = false)
     private Integer cantidad;
+
     @Column(nullable = false)
-    private Integer subtotal;
-    @ManyToOne
-    @JoinColumn(name="factura_idfactura")
-    private Factura factura;
+    private Double subtotal;
+
     @ManyToOne
     @JoinColumn(name="producto_idproducto")
     private Producto producto;
 
+    @ManyToOne
+    @JoinColumn(name="factura_idfactura")
+    private Factura factura;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "venta_idventa")
+    private Venta venta;
 }

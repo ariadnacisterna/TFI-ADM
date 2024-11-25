@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,4 +18,5 @@ public class VentaRequest {
     private Long clienteCUIL;
     @JsonProperty("empleado_CUIL")
     private Long empleadoCUIL;
+
 }

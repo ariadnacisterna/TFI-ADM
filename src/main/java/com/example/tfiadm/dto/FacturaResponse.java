@@ -19,10 +19,10 @@ public class FacturaResponse {
     private Integer idfactura;
     private LocalDate fecha;
     private String tipo;
-    private Integer total;
+    private Double total;
     private Boolean estado;
     @JsonProperty("venta_id")
-    private VentaResponse venta;
+    private Integer venta;
 
     public FacturaResponse(Factura factura) {
         this.idfactura = factura.getIdfactura();
@@ -30,6 +30,6 @@ public class FacturaResponse {
         this.tipo = factura.getTipo();
         this.total = factura.getTotal();
         this.estado = factura.getEstado();
-        this.venta = new VentaResponse(factura.getVenta());
+        this.venta = factura.getVenta().getIdventa();
     }
 }

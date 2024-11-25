@@ -8,6 +8,10 @@ import com.example.tfiadm.exception.ErrorSintaxisException;
 import com.example.tfiadm.exception.VentaNotFoundException;
 import com.example.tfiadm.service.VentaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,12 +28,13 @@ public class VentaController {
     public VentaResponse create(@RequestBody VentaRequest request) throws EmpleadoNotFoundException, ClienteNotFoundException, ErrorSintaxisException {
         return ventaService.create(request);
     }
+
     @GetMapping("empleados/{CUIL}")
-    public List<VentaResponse> getByEmpleadoCUIL(@PathVariable("CUIL")Long CUIL) throws EmpleadoNotFoundException {
+    public List<VentaResponse> getByEmpleadoCUIL(@PathVariable("CUIL")Long CUIL) throws EmpleadoNotFoundException, ChangeSetPersister.NotFoundException {
         return ventaService.findAllByEmpleadoCUIL(CUIL);
     }
     @GetMapping("clientes/{CUIL}")
-    public List<VentaResponse> getByClienteCUIL(@PathVariable("CUIL")Long CUIL) throws ClienteNotFoundException {
+    public List<VentaResponse> getByClienteCUIL(@PathVariable("CUIL")Long CUIL) throws ClienteNotFoundException, ChangeSetPersister.NotFoundException {
         return ventaService.findAllByClienteCUIL(CUIL);
     }
 

@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -26,4 +29,8 @@ public class Venta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_idcliente")
     private Cliente cliente;
+
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleFactura> detallesFactura = new ArrayList<>();
+
 }

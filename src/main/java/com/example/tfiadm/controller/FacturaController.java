@@ -8,6 +8,7 @@ import com.example.tfiadm.exception.VentaNotFoundException;
 import com.example.tfiadm.model.Factura;
 import com.example.tfiadm.service.EmpleadoService;
 import com.example.tfiadm.service.FacturaService;
+import com.itextpdf.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +21,13 @@ public class FacturaController {
     private final EmpleadoService empleadoService;
 
     @PostMapping()
-    public FacturaResponse create(@RequestBody FacturaRequest request) throws ErrorSintaxisException, VentaNotFoundException {
+    public FacturaResponse create(@RequestBody FacturaRequest request) throws ErrorSintaxisException, VentaNotFoundException, IOException, java.io.IOException {
         return facturaService.create(request);
     }
 
+
     @GetMapping("/{id}")
-    public FacturaResponse get(@PathVariable("id") Integer id) throws ErrorSintaxisException, VentaNotFoundException {
+    public FacturaResponse get(@PathVariable("id") Integer id) throws FacturaNotFoundException {
         return facturaService.findByVentaId(id);
     }
 

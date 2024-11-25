@@ -37,5 +37,7 @@ public class Empleado {
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "localidad_idlocalidad")
         private Localidad localidad;
+        @Column(nullable = false)
+        private boolean esGerente;
 
 }

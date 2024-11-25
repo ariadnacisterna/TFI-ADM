@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -20,14 +22,19 @@ public class Factura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Integer idfactura;
+
     @Column(nullable = false)
     private LocalDate fecha;
+
     @Column(nullable = false, length = 20)
     private String tipo;
+
     @Column
-    private Integer total = 0;
+    private Double total = 0.0;
+
     @Column(nullable = false)
     private Boolean estado;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "venta_idventa")
     private Venta venta;

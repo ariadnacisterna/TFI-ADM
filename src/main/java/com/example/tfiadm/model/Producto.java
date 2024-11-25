@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -19,8 +21,13 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Integer idproducto;
+
     @Column(nullable = false, length = 45)
     private String descripcion;
+
     @Column(nullable = false)
-    private Integer precio_unitario;
+    private Double precio_unitario;
+
+
+
 }

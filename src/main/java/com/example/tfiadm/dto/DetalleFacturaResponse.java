@@ -15,7 +15,7 @@ public class DetalleFacturaResponse {
     private Integer iddetalle;
     private ProductoResponse producto;
     private Integer cantidad;
-    private Integer subtotal;
+    private Double subtotal;
 
     public DetalleFacturaResponse(DetalleFactura detalle) {
         this.iddetalle = detalle.getIddetalle();

@@ -20,10 +20,17 @@ public class Pago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Integer idpago;
+
+
     @Column(nullable = false)
     private String metodo;
+
     @Column(nullable = false)
-    private Integer total;
+    private Double total;
+
+    @Column(nullable = false)
+    private LocalDate fecha;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_idfactura")
     private Factura factura;

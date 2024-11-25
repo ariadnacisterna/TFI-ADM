@@ -42,9 +42,15 @@ public class ProveedorController {
     public ProveedorResponse deleteProveedor(@PathVariable Long CUIL) throws ProveedorNotFoundException {
         return proveedorService.deleteProveedor(CUIL);
     }
+
     @GetMapping("/valoraciongeneral/{CUIL}")
     public ValoracionGeneralResponse getValoracionByCUIL(@PathVariable("CUIL") Long CUIL) throws ProveedorNotFoundException, ValoracionNotFoundException, CompraNotFoundException {
         return proveedorService.getValoracionGeneral(CUIL);
+    }
+
+    @GetMapping("/test-notificacion")
+    public void testNotificacion() {
+        proveedorService.notificarProveedoresContratoPorExpirar();
     }
 
 }

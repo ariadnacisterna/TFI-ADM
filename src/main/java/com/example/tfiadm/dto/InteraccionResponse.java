@@ -16,8 +16,8 @@ public class InteraccionResponse {
     private String tipo_interaccion;
     private String descripcion;
     private LocalDate fecha;
-    private Integer empleadoId; // Cambiar a Long
-    private Integer clienteId;  // Cambiar a Long
+    private Integer empleadoId;
+    private Integer clienteId;
 
     public InteraccionResponse(Interaccion interaccion) {
         this.idinteraccion = interaccion.getIdinteraccion();

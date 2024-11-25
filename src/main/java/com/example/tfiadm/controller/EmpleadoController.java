@@ -19,8 +19,6 @@ import java.util.List;
 public class EmpleadoController {
     private final EmpleadoService empleadoService;
 
-
-
     @PostMapping()
     public EmpleadoResponse create(@RequestBody EmpleadoRequest request) throws CUILAlreadyInUseException, LocalidadNotFoundException, ErrorSintaxisException {
         return empleadoService.create(request);
