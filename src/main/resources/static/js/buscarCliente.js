@@ -53,21 +53,12 @@ function mostrarClientesEnTabla(clientes) {
         const accionesCell = document.createElement('td');
 
         // Botón de modificar con icono de Material Icons
-        const modificarBtn = document.createElement('button');
-        modificarBtn.className = 'btn btn-warning btn-sm me-2';
-        modificarBtn.innerHTML = '<span class="material-icons">edit</span>'; // Icono de editar
-        modificarBtn.onclick = () => modificarCliente(cliente.idcliente); // Función para modificar
-        accionesCell.appendChild(modificarBtn);
-
-        // Botón de eliminar con icono de Material Icons
-        const eliminarBtn = document.createElement('button');
-        eliminarBtn.className = 'btn btn-danger btn-sm';
-        eliminarBtn.innerHTML = '<span class="material-icons">delete</span>'; // Icono de eliminar
-        eliminarBtn.onclick = () => eliminarCliente(cliente.idcliente); // Función para eliminar
-        accionesCell.appendChild(eliminarBtn);
-
+        const verDetallesBtn = document.createElement('button');
+        verDetallesBtn.className = 'btn btn-info btn-sm me-2';
+        verDetallesBtn.innerHTML = '<span class="material-icons">visibility</span>'; // Icono de ver detalles
+        verDetallesBtn.onclick = () => mostrarDetalles(cliente.idcliente);
+        accionesCell.appendChild(verDetallesBtn);
         row.appendChild(accionesCell);
-
         tbody.appendChild(row);
     });
 }

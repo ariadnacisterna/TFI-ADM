@@ -55,7 +55,7 @@
     <form id="buscar-proveedor-form">
         <div class="mb-3">
             <h4>Cuil</h4>
-            <input type="text" class="form-control" id="dni" placeholder="Ingrese Cuil" required>
+            <input type="text" class="form-control" id="cuilParaBuscar" placeholder="Ingrese Cuil" required>
         </div>
         <button type="submit" class="btn btn-primary">Buscar Proveedor</button>
     </form>
@@ -72,8 +72,8 @@
                 <th scope="col">Email</th>
                 <th scope="col">CUIL</th>
                 <th scope="col">Localidad</th>
-                <th scope="col">fecha-inicio</th>
-                <th scope="col">fecha-inicio</th>
+                <th scope="col">contrato-inicio</th>
+                <th scope="col">contrato-fin</th>
             </tr>
             </thead>
             <tbody id="proveedores-tbody">
@@ -99,6 +99,6 @@
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../proveedorBuscar.js"></script>
+<script src="../js/buscarProveedor.js"></script>
 </body>
 </html>

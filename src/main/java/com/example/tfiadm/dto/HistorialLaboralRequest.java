@@ -20,4 +20,4 @@ public class HistorialLaboralRequest {
     private String lugar_trabajo;
     @JsonProperty ("empleado_id")
     private Integer empleadoid;
-} ini
+} 
