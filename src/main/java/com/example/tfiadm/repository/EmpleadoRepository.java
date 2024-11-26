@@ -14,4 +14,6 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
     Optional<Empleado> findByCuilAndBorradoFalse(Long cuil);
     Optional<Empleado> findByIdempleado(Integer idempleado);
     List<Empleado> findByEsGerenteTrue();
+
+    Optional<Empleado> findByMail(String mail);
 }

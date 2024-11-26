@@ -38,6 +38,7 @@ public class EmpleadoController {
     public EmpleadoResponse update(@PathVariable Long CUIL, @RequestBody EmpleadoRequest request) throws EmpleadoNotFoundException, LocalidadNotFoundException, ErrorSintaxisException {
         return empleadoService.updateEmpleado(CUIL, request);
     }
+
     @DeleteMapping("/{CUIL}")
     public EmpleadoResponse deleteEmpleado(@PathVariable Long CUIL) throws EmpleadoNotFoundException {
         return empleadoService.deleteEmpleado(CUIL);
