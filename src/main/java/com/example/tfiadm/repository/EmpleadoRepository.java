@@ -15,5 +15,9 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
     Optional<Empleado> findByIdempleado(Integer idempleado);
     List<Empleado> findByEsGerenteTrue();
 
+<<<<<<< HEAD
     Empleado findByMail(String mail);
+=======
+    Optional<Empleado> findByMail(String mail);
+>>>>>>> 3556b8b09cb73e0c5222ca712261f9e3300fa746
 }
