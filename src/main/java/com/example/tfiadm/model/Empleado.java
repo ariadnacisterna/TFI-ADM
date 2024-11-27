@@ -30,14 +30,16 @@ public class Empleado {
         private String direccion;
         @Column(nullable = false)
         private LocalDate bod;
-        @Column(nullable = false,length = 100)
+        @Column(unique = true, nullable = false,length = 100)
         private String mail;
         @Column(nullable = false)
         private boolean borrado;
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "localidad_idlocalidad")
         private Localidad localidad;
         @Column(nullable = false)
         private boolean esGerente;
 
+        @OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL)
+        private InicioSesion inicioSesion;
 }

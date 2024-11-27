@@ -18,7 +18,7 @@ public class Provincia {
     private int idprovincia;
     @Column(nullable = false,length = 45)
     private String nombre;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pais_idpais")
     private Pais pais;
 

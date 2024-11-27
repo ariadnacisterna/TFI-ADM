@@ -8,8 +8,10 @@ import com.example.tfiadm.exception.EmpleadoNotFoundException;
 import com.example.tfiadm.exception.ErrorSintaxisException;
 import com.example.tfiadm.exception.LocalidadNotFoundException;
 import com.example.tfiadm.model.Empleado;
+import com.example.tfiadm.model.InicioSesion;
 import com.example.tfiadm.model.Localidad;
 import com.example.tfiadm.repository.EmpleadoRepository;
+import com.example.tfiadm.repository.InicioSesionRepository;
 import com.example.tfiadm.repository.LocalidadRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,9 @@ import java.util.List;
 public class EmpleadoService {
     private final EmpleadoRepository empleadoRepository;
     private final LocalidadRepository localidadRepository;
+    private final InicioSesionService inicioSesionService;
 
+    @Transactional
     public EmpleadoResponse create(EmpleadoRequest request) throws CUILAlreadyInUseException, LocalidadNotFoundException, ErrorSintaxisException {
         if (request.getCUIL() == null || request.getNombre_completo().isEmpty() || request.getDireccion().isEmpty() || request.getBod() == null || request.getMail().isEmpty() || request.getLocalidadId()==null)  {
             throw new ErrorSintaxisException("Todos los campos son obligatorios.");
@@ -46,6 +50,8 @@ public class EmpleadoService {
                 .build();
 
         Empleado savedEmpleado = empleadoRepository.save(empleado);
+        inicioSesionService.createInicioSesion(savedEmpleado);
+
         return new EmpleadoResponse(savedEmpleado);
     }
 
@@ -54,12 +60,14 @@ public class EmpleadoService {
                 .map(EmpleadoResponse::new)
                 .toList();
     }
+
     public EmpleadoResponse getEmpleadoByCUIL(Long CUIL) throws EmpleadoNotFoundException {
         Empleado empleado = empleadoRepository.findByCuilAndBorradoFalse(CUIL)
                 .orElseThrow(() -> new EmpleadoNotFoundException("Empleado con CUIL " + CUIL + " no encontrado o borrado"));
 
         return new EmpleadoResponse(empleado);
     }
+
     @Transactional
     public EmpleadoResponse updateEmpleado(Long CUIL, EmpleadoRequest request) throws EmpleadoNotFoundException, ErrorSintaxisException, LocalidadNotFoundException {
         if (request.getNombre_completo().isEmpty() || request.getDireccion().isEmpty() || request.getBod() == null || request.getMail().isEmpty() || request.getLocalidadId()==null)  {
@@ -72,17 +80,23 @@ public class EmpleadoService {
         Localidad localidad = localidadRepository.findById(request.getLocalidadId())
                 .orElseThrow(() -> new LocalidadNotFoundException("Localidad not Found"));
 
-                empleado.setNombre_completo(request.getNombre_completo());
-                empleado.setDireccion(request.getDireccion());
-                empleado.setLocalidad(localidad);
-                empleado.setMail(request.getMail());
-                empleado.setBod(request.getBod());
-                empleado.setEsGerente(request.isEsGerente());
+        String oldMail = empleado.getMail();
+        String newMail = request.getMail();
+        if (!oldMail.equals(newMail)) {
+            inicioSesionService.updateInicioSesion(empleado, newMail);
+        }
 
-                Empleado updatedEmpleado = empleadoRepository.save(empleado);
+        empleado.setNombre_completo(request.getNombre_completo());
+        empleado.setDireccion(request.getDireccion());
+        empleado.setLocalidad(localidad);
+        empleado.setMail(request.getMail());
+        empleado.setBod(request.getBod());
+        empleado.setEsGerente(request.isEsGerente());
 
-                return new EmpleadoResponse(updatedEmpleado);
+        Empleado updatedEmpleado = empleadoRepository.save(empleado);
+        return new EmpleadoResponse(updatedEmpleado);
     }
+
     @Transactional
     public EmpleadoResponse deleteEmpleado(Long CUIL) throws EmpleadoNotFoundException {
         Empleado empleado = empleadoRepository.findByCuil(CUIL)
