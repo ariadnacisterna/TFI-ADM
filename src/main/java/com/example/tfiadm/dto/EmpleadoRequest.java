@@ -22,6 +22,7 @@ public class EmpleadoRequest {
     @JsonProperty("fecha_nacimiento")
     private LocalDate bod;
     private String mail;
+
     @JsonProperty("localidad_id")
     private Integer localidadId;
 }

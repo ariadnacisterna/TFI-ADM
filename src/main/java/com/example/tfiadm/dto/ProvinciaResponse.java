@@ -16,10 +16,12 @@ import lombok.NoArgsConstructor;
 public class ProvinciaResponse {
     private Integer idprovincia;
     private String nombre;
+    private PaisResponse pais;
 
 
     public ProvinciaResponse(Provincia provincia) {
         this.idprovincia = provincia.getIdprovincia();
         this.nombre = provincia.getNombre();
+        this.pais=new PaisResponse(provincia.getPais());
     }
 }

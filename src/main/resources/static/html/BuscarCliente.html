@@ -54,8 +54,8 @@
       <!-- Formulario de búsqueda por DNI -->
       <form id="buscar-cliente-form">
           <div class="mb-3">
-              <h4>DNI</h4>
-              <input type="text" class="form-control" id="dni" placeholder="Ingrese DNI" required>
+              <h4>CUIL</h4>
+              <input type="text" class="form-control" id="cuilBusqueda" placeholder="Ingrese CUIL" required>
           </div>
           <button type="submit" class="btn btn-primary">Buscar Cliente</button>
       </form>
@@ -81,6 +81,98 @@
               </tbody>
           </table>
       </div>
+      <form id="mostrar-cliente-form">
+          <div class="row">
+              <!-- CUIL -->
+              <div class="col-md-6 mb-3">
+                  <label for="cuil2" class="form-label">CUIL</label>
+                  <input type="text" class="form-control" id="cuil2" placeholder="Ingrese CUIL" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                  <label for="dni" class="form-label">CUIL</label>
+                  <input type="text" class="form-control" id="dni" placeholder="Ingrese dni" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                  <label for="condicion" class="form-label">condicon</label>
+                  <input type="text" class="form-control" id="condicion-impositiva" placeholder="Ingrese CUIL" required>
+              </div>
+
+              <!-- Estado, si el empleado se encuentra activo o no -->
+              <div class="col-md-6 mb-3">
+                  <label for="borrado" class="form-label">Borrado</label>
+                  <select class="form-control" id="borrado" name="borrado" required>
+                      <option value="true">true</option>
+                      <option value="false">false</option>
+                  </select>
+              </div>
+
+              <!-- Nombre -->
+              <div class="col-md-6 mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" placeholder="Ingrese Nombre" required>
+              </div>
+
+
+              <!-- Fecha de Nacimiento -->
+              <div class="col-md-6 mb-3">
+                  <label for="fecha-nacimiento" class="form-label">Fecha de Nacimiento</label>
+                  <input type="date" class="form-control" id="fecha-nacimiento" required>
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Ingrese Email" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                  <label for="telefono" class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="telefono" placeholder="Ingrese telefono" required>
+              </div>
+
+              <!-- Dirección -->
+              <div class="col-md-6 mb-3">
+                  <label for="direccion" class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="direccion" placeholder="Ingrese Dirección" required>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                  <label for="pais" class="form-label">País</label>
+                  <select class="form-control" id="pais" name="pais" required>
+                      <option value="">Seleccione un país</option>
+                      <option value="1">1</option>
+                      <option value="1">0</option>
+                      <!-- Aquí se cargarán los países desde el backend -->
+                  </select>
+              </div>
+              <!-- Provincia -->
+              <div class="col-md-6 mb-3">
+                  <label for="provincia" class="form-label">Provincia</label>
+                  <select class="form-control" id="provincia" name="provincia" required>
+                      <option value="">Seleccione una provincia</option>
+                      <!-- Aquí se cargarán las provincias desde el backend -->
+                      <option value="1">1</option>
+                      <option value="1">0</option>
+                  </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                  <label for="localidad" class="form-label">Localidad</label>
+                  <select class="form-control" id="localidad" name="localidad" required>
+                      <option value="1">1</option>
+                      <option value="0">0</option>
+
+                      <!-- Aquí se cargarán las localidades desde el backend -->
+                  </select>
+              </div>
+
+          </div>
+
+          <!-- Botón de enviar -->
+          <button type="button" class="btn btn-primary" id="eliminar-boton">Eliminar Cliente</button>
+          <button type="button" class="btn btn-primary" id="modificar-boton">Modificar Cliente</button>
+
+
+      </form>
 
   </div>
 

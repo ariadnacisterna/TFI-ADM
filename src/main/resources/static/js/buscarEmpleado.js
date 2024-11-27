@@ -1,23 +1,5 @@
 // Función para mostrar los empleados en la tabla.
-windowonlad=funcionIniciar();
-{
-    window.onload = function() {
-        // Ejecutamos ambas solicitudes en paralelo usando Promise.all
-        Promise.all([
-            mostrarEmpleadosEnTabla(),
-            obtenerPaises()
-        ])
-            .then(([empleados, paises]) => {
-                // Aquí puedes trabajar con los datos de ambos
-                console.log("Empleados:", empleados);
-                console.log("Paises:", paises);
-            })
-            .catch(error => {
-                console.error("Error al obtener datos:", error);
-            });
-    }
 
-}
 function mostrarEmpleadosEnTabla(empleados) {
     const tbody = document.getElementById('empleados-tbody');
     tbody.innerHTML = ''; // Limpiar la tabla antes de llenarla
@@ -56,7 +38,7 @@ function mostrarEmpleadosEnTabla(empleados) {
         const verDetallesBtn = document.createElement('button');
         verDetallesBtn.className = 'btn btn-info btn-sm me-2';
         verDetallesBtn.innerHTML = '<span class="material-icons">visibility</span>'; // Icono de ver detalles
-        verDetallesBtn.onclick = () =>buscarEmpleado(empleado.cuil);
+        verDetallesBtn.onclick = () =>mostrarEmpleadoEnFormulario(empleado);
         accionesCell.appendChild(verDetallesBtn);
         row.appendChild(accionesCell);
         tbody.appendChild(row);
@@ -65,6 +47,15 @@ function mostrarEmpleadosEnTabla(empleados) {
 
 
 async function mostrarEmpleadoEnFormulario(empleado){
+    const idpais=empleado.localidad_id.provincia.pais.idpais;
+    const idProvincia=empleado.localidad_id.provincia.idprovincia;
+    const idLocalidad=empleado.localidad_id.idlocalidad;
+    // obtengo el id del pais del empleado para en base a eso cargar las provincias y localidades.
+    // luego el pais,prov y localidad se seleccionaran segun los datos del empleado.
+    await obtenerPaises();
+    console.log(empleado);
+    await obtenerProvincias(idpais);
+    await obtenerLocalidades(idProvincia);
 
     document.getElementById('cuil2').value = String(empleado.cuil);
     document.getElementById('nombre').value = empleado.nombre_completo;
@@ -72,7 +63,12 @@ async function mostrarEmpleadoEnFormulario(empleado){
     document.getElementById('direccion').value=empleado.direccion;
     document.getElementById('fecha-nacimiento').value=empleado.fecha_nacimiento;
     document.getElementById('borrado').value=empleado.borrado;
-    document.getElementById('localidad').value=empleado.localidad_id;
+    document.getElementById('pais').value=idpais;
+    document.getElementById('provincia').value=idProvincia;
+    document.getElementById('localidad').value=idLocalidad;
+    console.log(empleado);
+
+    console.log("seleccionado");
 
 }
 
@@ -144,8 +140,34 @@ async function eliminarEmpleado(cuil) {
     } catch (error) {
         console.error('Error al hacer la solicitud:', error);
         alert('Hubo un problema al conectar con el servidor. Intente nuevamente.');
+
     }
 }
+
+async function modificarEmpleado(empleadoActualizado, cuil) {
+    try {
+        // URL para la API de modificación del empleado, con el ID del empleado a modificar
+        const response = await fetch(`http://localhost:8080/api/adm/empleados/${cuil}`, {
+            method: 'PUT', // Usamos PUT para modificar un recurso existente
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(empleadoActualizado)  // Los nuevos datos del empleado a modificar, incluidos el 'cuil'
+        });
+
+        if (response.ok) {
+            alert('Empleado modificado exitosamente!');
+            cargarEmpleados();// Mensaje de éxito
+        } else {
+            const errorData = await response.json();  // Obtener el cuerpo de la respuesta con el mensaje de error
+            alert('Error: ' + (errorData.message || 'Hubo un error al modificar el empleado.'));
+        }
+    } catch (error) {
+        console.error('Error al hacer la solicitud:', error);
+        alert('Hubo un problema al conectar con el servidor. Intente nuevamente.');
+    }
+}
+
     // necesito cargar las provincias en el formulario a la hora de mostrar el empleado.
 
 
@@ -176,7 +198,7 @@ document.getElementById('buscar-empleado-form').addEventListener('submit', funct
 
 
 });
-document.getElementById('mostrar-empleado-form').addEventListener('submit', function(event) {
+document.getElementById('eliminar-boton').addEventListener('click', function(event) {
     event.preventDefault(); // Evitar el comportamiento por defecto del formulario
 
     const cuil = obtenerCuilFormulario(); // Obtener el CUIL ingresado
@@ -189,9 +211,28 @@ document.getElementById('mostrar-empleado-form').addEventListener('submit', func
 
 
 });
+document.getElementById('modificar-boton').addEventListener('click', function(event ) {
+    // Aquí puedes agregar la lógica para modificar el empleado
+    // Por ejemplo, puedes mostrar un mensaje de alerta o abrir un modal para confirmar la modificación
+   event.preventDefault();
+    const empleadoActualizado = {
+        CUIL: parseInt(document.getElementById('cuil2').value),
+        nombre_completo: document.getElementById('nombre').value,
+        mail: document.getElementById('email').value,
+        direccion: document.getElementById('direccion').value,
+        fecha_nacimiento: document.getElementById('fecha-nacimiento').value,
+        localidad_id: document.getElementById('localidad').value
+    };
+    console.log(document.getElementById('borrado').value);
+
+    modificarEmpleado(empleadoActualizado,empleadoActualizado.CUIL);
 
 
-// codigo para obtener los paises y llenar el form donde se muestra el empleado.
+});
+
+
+//codigo de llenar paises y
+
 async function obtenerPaises() {
     try {
         const buscarpaises = await fetch('http://localhost:8080/api/adm/paises', {

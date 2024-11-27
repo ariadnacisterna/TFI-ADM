@@ -20,7 +20,7 @@ public class Localidad {
     private String nombre;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "provincia_idprovincia")
-        private Provincia provincia;
+    private Provincia provincia;
 
 
 }

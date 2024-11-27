@@ -20,7 +20,7 @@ public class ProveedorController {
         return proveedorService.create(request);
     }
 
-    @GetMapping()
+    @GetMapping("/todos")
     public List<ProveedorResponse> getAll() {return proveedorService.getAll();}
 
     @GetMapping("/{CUIL}")

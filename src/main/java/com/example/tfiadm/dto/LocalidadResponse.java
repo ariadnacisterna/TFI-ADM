@@ -15,11 +15,16 @@ import lombok.NoArgsConstructor;
 public class LocalidadResponse {
     private Integer idlocalidad;
     private String nombre;
+    private ProvinciaResponse provincia;
+
 
 
     public LocalidadResponse(Localidad localidad) {
         this.idlocalidad = localidad.getIdlocalidad();
         this.nombre = localidad.getNombre();
+        this.provincia=new ProvinciaResponse(localidad.getProvincia());
+
+
 
     }
 }
