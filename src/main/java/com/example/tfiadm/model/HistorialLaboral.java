@@ -21,14 +21,19 @@ public class HistorialLaboral {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false, name = "idhistorial_laboral")
     private Integer idhistoriallaboral;
+
     @Column
     private LocalDate fecha_inicio;
+
     @Column
     private LocalDate fecha_fin;
+
     @Column(nullable = false,length = 100)
     private String rol;
+
     @Column(nullable = false,length = 100)
     private String lugar_trabajo;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore
     @JoinColumn(name = "empleado_idempleado")

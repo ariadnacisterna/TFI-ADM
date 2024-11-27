@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface HistorialLaboralRepository extends JpaRepository<HistorialLaboral, Long> {
     Optional<HistorialLaboral> findByIdhistoriallaboral(Integer idhistoriallaboral);
+
     List<HistorialLaboral> findByEmpleado_Idempleado(Integer empleadoId);
 }

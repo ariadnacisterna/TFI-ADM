@@ -19,20 +19,14 @@ public class InicioSesionService {
     @Autowired
     private InicioSesionRepository inicioSesionRepository;
 
-    public InicioSesion iniciarSesion(InicioSesionRequest request) {
-        Empleado empleado = empleadoRepository.findByMail(request.getUsername());
+    public String iniciarSesion(InicioSesionRequest request) {
+        InicioSesion inicioSesion = inicioSesionRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new RuntimeException("Usuario y/o contraseña incorrectos."));
 
-        if (empleado != null && empleado.getCuil().toString().equals(request.getPassword())) {
-            InicioSesion inicioSesion = new InicioSesion();
-            inicioSesion.setId(Long.valueOf(empleado.getIdempleado()));
-            inicioSesion.setUsername(request.getUsername());
-            inicioSesion.setPassword(request.getPassword());
-            inicioSesion.setEmpleado(empleado);
-
-            EmpleadoResponse empleadoResponseDTO = new EmpleadoResponse(empleado);
-            return inicioSesionRepository.save(inicioSesion);
+        if (inicioSesion.getPassword().equals(request.getPassword())) {
+            return "Inicio de sesión correcto";
         } else {
-            throw new RuntimeException("Credenciales inválidas");
+            throw new RuntimeException("Usuario y/o contraseña incorrectos.");
         }
     }
 

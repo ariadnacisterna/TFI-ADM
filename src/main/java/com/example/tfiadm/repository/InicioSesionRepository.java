@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface InicioSesionRepository extends JpaRepository<InicioSesion, Long> {
     Optional<InicioSesion> findByEmpleado(Empleado empleado);
+
+    Optional<InicioSesion> findByUsername(String username);
 }

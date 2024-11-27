@@ -17,13 +17,20 @@ import java.time.LocalDate;
 
 public class EmpleadoResponse {
     private Integer idempleado;
+
     private Long cuil;
+
     private String nombre_completo;
+
     private String direccion;
+
     @JsonProperty("fecha_nacimiento")
     private LocalDate bod;
+
     private String mail;
+
     private boolean borrado;
+
     @JsonProperty("localidad_id")
     private LocalidadResponse localidad;
 

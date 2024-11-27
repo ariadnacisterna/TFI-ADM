@@ -11,5 +11,4 @@ import java.util.Optional;
 @Repository
 public interface DetalleFacturaRepository extends JpaRepository<DetalleFactura, Long> {
     List<DetalleFactura> findByFactura_Idfactura(Integer factura_idfactura);
-
 }

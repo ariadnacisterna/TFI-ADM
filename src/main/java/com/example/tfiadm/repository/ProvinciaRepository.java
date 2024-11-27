@@ -7,5 +7,4 @@ import java.util.Optional;
 
 public interface ProvinciaRepository extends JpaRepository<Provincia, Integer> {
     Optional<Provincia> findById(Integer id);
-
 }

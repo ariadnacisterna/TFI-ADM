@@ -58,7 +58,6 @@ public class ClienteService {
         }
     }
 
-
     public void modificarCliente(Long cuil, ClienteRequest clienteActualizado) throws Exception{
         Cliente clienteEncontrado = buscarCliente(cuil);
 

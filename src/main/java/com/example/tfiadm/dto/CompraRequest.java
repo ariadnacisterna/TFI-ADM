@@ -16,10 +16,12 @@ import java.time.LocalDate;
 public class CompraRequest {
     @JsonProperty("producto_servicio")
     private String producto_servicio;
+
     private Integer total;
+
     @JsonProperty("fecha_compra")
     private LocalDate fecha_compra;
+
     @JsonProperty("proveedor_id")
     private Integer proveedorId;
-
 }

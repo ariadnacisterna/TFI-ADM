@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface ValoracionRepository extends JpaRepository<Valoracion, Long> {
     Optional<Valoracion> findByCompra_Idcompra(Integer compra_idcompra);
+
     List<Valoracion> findByCompra_IdcompraIn(List<Integer> compraIds);
 }

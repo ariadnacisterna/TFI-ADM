@@ -16,6 +16,7 @@ import java.util.List;
 public class VentaRequest {
     @JsonProperty("cliente_CUIL")
     private Long clienteCUIL;
+
     @JsonProperty("empleado_CUIL")
     private Long empleadoCUIL;
 

@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface InteraccionRepository extends JpaRepository<Interaccion, Long> {
-    List<Interaccion> findByCliente_Idcliente(Long idcliente);
-
+    List<Interaccion> findByCliente_Cuil(Long cuilCliente);
 }

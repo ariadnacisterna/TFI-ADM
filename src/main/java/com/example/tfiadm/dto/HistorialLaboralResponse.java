@@ -17,12 +17,16 @@ import java.time.LocalDate;
 
 public class HistorialLaboralResponse {
     private Integer idhistoriallaboral;
+
     @JsonProperty("fecha_inicio")
     private LocalDate fecha_inicio;
+
     @JsonProperty("fecha_fin")
     private LocalDate fecha_fin;
+
     @JsonProperty("rol")
     private String rol;
+
     @JsonProperty("lugar_trabajo")
     private String lugar_trabajo;
 

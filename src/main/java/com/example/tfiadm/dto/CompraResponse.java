@@ -17,9 +17,13 @@ import java.time.LocalDateTime;
 
 public class CompraResponse {
     private Integer idcompra;
+
     private String producto_servicio;
+
     private Integer total;
+
     private LocalDate fecha_compra;
+
     @JsonProperty("proveedor_id")
     private ProveedorResponse proveedor;
 

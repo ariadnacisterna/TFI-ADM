@@ -15,9 +15,13 @@ import java.time.LocalDate;
 
 public class HistorialLaboralRequest {
     private LocalDate fecha_inicio;
+
     private LocalDate fecha_fin;
+
     private String rol;
+
     private String lugar_trabajo;
+
     @JsonProperty ("empleado_id")
     private Integer empleadoid;
 }

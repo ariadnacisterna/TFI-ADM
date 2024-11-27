@@ -11,7 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class InteraccionRequest {
     private String tipo_interaccion;
+
     private String descripcion;
-    private Long empleadoId;
-    private Long clienteId;
+
+    private Long empleado_cuil;
+
+    private Long cliente_cuil;
 }

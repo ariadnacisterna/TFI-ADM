@@ -48,9 +48,9 @@ public class ProveedorController {
         return proveedorService.getValoracionGeneral(CUIL);
     }
 
+
     @GetMapping("/test-notificacion")
     public void testNotificacion() {
         proveedorService.notificarProveedoresContratoPorExpirar();
     }
-
 }

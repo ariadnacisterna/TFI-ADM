@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 
 public class ValoracionGeneralResponse {
     private double puntualidadPromedio;
+
     private double cumplimientoPromedio;
+
     private double calidadPromedio;
 
     public ValoracionGeneralResponse(double puntualidadPromedio, double cumplimientoPromedio, double calidadPromedio) {

@@ -22,11 +22,11 @@ public class Venta {
     @Column(unique = true, nullable = false)
     private Integer idventa;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "empleado_idempleado")
     private Empleado empleado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_idcliente")
     private Cliente cliente;
 

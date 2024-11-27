@@ -26,6 +26,4 @@ public class PagoController {
     public PagoResponse findByFacturaId(@PathVariable("id") Integer id) {
         return pagoService.findByIdFactura(id);
     }
-
-
 }

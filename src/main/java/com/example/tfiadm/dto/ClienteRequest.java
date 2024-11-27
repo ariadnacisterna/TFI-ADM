@@ -16,16 +16,22 @@ import java.time.LocalDate;
 public class ClienteRequest {
     @JsonProperty("CUIL")
     private Long cuil;
+
     private Long dni;
+
     private String nombre_completo;
+
     private String direccion;
+
     private String mail;
+
     @JsonProperty("fecha_nacimiento")
     private LocalDate bod;
+
     private Long telefono;
+
     private String condicion_impositiva;
+
     @JsonProperty("localidad_id")
     private Integer localidadId;
-
-
 }

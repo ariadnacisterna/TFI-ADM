@@ -14,7 +14,9 @@ import lombok.NoArgsConstructor;
 
 public class ProductoResponse {
     private Integer idproducto;
+
     private String descripcion;
+
     @JsonProperty("precio_unitario")
     private Double precio_unitario;
 

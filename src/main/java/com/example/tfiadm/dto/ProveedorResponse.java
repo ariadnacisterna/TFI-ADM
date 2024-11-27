@@ -17,15 +17,23 @@ import java.time.LocalDate;
 
 public class ProveedorResponse {
     private Integer idproveedor;
+
     private Long cuil;
+
     private String nombre_completo;
+
     private String direccion;
+
     private String mail;
+
     @JsonProperty("contrato_inicio")
     private LocalDate contrato_inicio;
+
     @JsonProperty("contrato_fin")
     private LocalDate contrato_fin;
+
     private boolean borrado;
+
     @JsonProperty("localidad_id")
     private LocalidadResponse localidad;
 

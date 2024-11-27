@@ -21,7 +21,6 @@ public class Pago {
     @Column(unique = true, nullable = false)
     private Integer idpago;
 
-
     @Column(nullable = false)
     private String metodo;
 
@@ -31,7 +30,7 @@ public class Pago {
     @Column(nullable = false)
     private LocalDate fecha;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "factura_idfactura")
     private Factura factura;
 }

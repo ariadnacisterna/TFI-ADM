@@ -21,11 +21,10 @@ public class InicioSesionController {
     private InicioSesionService inicioSesionService;
 
     @PostMapping()
-    public ResponseEntity<InicioSesion> login(@RequestBody InicioSesionRequest request){
+    public ResponseEntity<String> login(@RequestBody InicioSesionRequest request){
         try{
-            InicioSesion inicioSesion = inicioSesionService.iniciarSesion(request);
-
-            return ResponseEntity.ok(inicioSesion);
+            String mensaje = inicioSesionService.iniciarSesion(request);
+            return ResponseEntity.ok(mensaje);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }

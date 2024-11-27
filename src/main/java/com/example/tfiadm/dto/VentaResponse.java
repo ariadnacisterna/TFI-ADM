@@ -14,8 +14,10 @@ import lombok.NoArgsConstructor;
 
 public class VentaResponse {
     private Integer idventa;
+
     @JsonProperty("cliente_id")
     private ClienteResponse cliente;
+
     @JsonProperty("empleado_id")
     private EmpleadoResponse empleado;
 

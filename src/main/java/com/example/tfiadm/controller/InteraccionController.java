@@ -14,19 +14,17 @@ import java.util.List;
 @RequestMapping("api/adm/interaccion")
 @RequiredArgsConstructor
 public class InteraccionController {
-
     private final InteraccionService interaccionService;
 
-    @PostMapping()
+    @PostMapping("/crear")
     public ResponseEntity<InteraccionResponse> crearInteraccion(@RequestBody InteraccionRequest interaccionRequest) {
         InteraccionResponse response = interaccionService.crearInteraccion(interaccionRequest);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{clienteId}")
+    @GetMapping("/buscar/{clienteId}")
     public ResponseEntity<List<InteraccionResponse>> consultarHistorial(@PathVariable Long clienteId) {
         List<InteraccionResponse> historial = interaccionService.consultarHistorial(clienteId);
         return ResponseEntity.ok(historial);
     }
-
 }

@@ -17,17 +17,20 @@ import java.time.LocalDate;
 
 
 public class Compra {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Integer idcompra;
+
     @Column(nullable = false, length = 45)
     private String producto_servicio;
+
     @Column(nullable = false)
     private Integer total;
+
     @Column(nullable = false)
     private LocalDate fecha_compra;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "proveedor_idproveedor")
     private Proveedor proveedor;

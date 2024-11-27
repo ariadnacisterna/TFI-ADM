@@ -8,6 +8,7 @@ import com.example.tfiadm.model.Factura;
 import com.example.tfiadm.model.Pago;
 import com.example.tfiadm.repository.FacturaRepository;
 import com.example.tfiadm.repository.PagoRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class PagoService {
     private final GeneradorPDF generadorPDF;
     private final EmailService emailService;
 
+    @Transactional
     public PagoResponse create(PagoRequest request) throws FacturaNotFoundException, ErrorSintaxisException, IOException {
         if(request.getTotal() == null || request.getTotal() == null || request.getFacturaId()==null) {
             throw new ErrorSintaxisException("Todos los campos son obligatorios");
@@ -31,6 +33,10 @@ public class PagoService {
 
         Factura factura = facturaRepository.findByIdfactura(request.getFacturaId())
                 .orElseThrow(()-> new FacturaNotFoundException("Factura no encontrada"));
+
+        if(!request.getTotal().equals(factura.getTotal())){
+            throw new ErrorSintaxisException("El total del pago debe ser igual al total de la factura.");
+        }
 
         var pago = Pago.builder()
                 .total(request.getTotal())
@@ -45,7 +51,7 @@ public class PagoService {
                 .mapToDouble(Pago::getTotal)
                 .sum();
 
-        if (totalPagado >= factura.getTotal()) {
+        if (totalPagado == factura.getTotal()) {
             factura.setEstado(true);
         }
 
@@ -65,6 +71,13 @@ public class PagoService {
     public PagoResponse findByIdFactura(Integer id) throws FacturaNotFoundException {
         Pago pago = pagoRepository.findByFactura_Idfactura(id)
                 .orElseThrow(()-> new FacturaNotFoundException("Factura no encontrada"));
+        return new PagoResponse(pago);
+    }
+
+    public PagoResponse findByFacturaId(Integer id) throws FacturaNotFoundException {
+        Pago pago = pagoRepository.findByFactura_Idfactura(id)
+                .orElseThrow(() -> new FacturaNotFoundException("Pago no encontrado para la factura con id " + id));
+
         return new PagoResponse(pago);
     }
 }

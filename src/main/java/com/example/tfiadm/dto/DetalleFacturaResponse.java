@@ -13,8 +13,11 @@ import lombok.NoArgsConstructor;
 
 public class DetalleFacturaResponse {
     private Integer iddetalle;
+
     private ProductoResponse producto;
+
     private Integer cantidad;
+
     private Double subtotal;
 
     public DetalleFacturaResponse(DetalleFactura detalle) {

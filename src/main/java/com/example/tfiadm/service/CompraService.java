@@ -28,17 +28,17 @@ public class CompraService {
             throw new ErrorSintaxisException("Todos los campos son obligatorios.");
         }
 
-    Proveedor proveedor = proveedorRepository.findByIdproveedor(request.getProveedorId())
-            .orElseThrow(() -> new ProveedorNotFoundException("Proveedor no encontrado"));
+        Proveedor proveedor = proveedorRepository.findByIdproveedor(request.getProveedorId())
+                .orElseThrow(() -> new ProveedorNotFoundException("Proveedor no encontrado"));
 
-    var compra = Compra.builder()
-            .producto_servicio(request.getProducto_servicio())
-            .total(request.getTotal())
-            .fecha_compra(request.getFecha_compra())
-            .proveedor(proveedor)
-            .build();
-    Compra saveCompra = compraRepository.save(compra);
-    return new CompraResponse(saveCompra);
+        var compra = Compra.builder()
+                .producto_servicio(request.getProducto_servicio())
+                .total(request.getTotal())
+                .fecha_compra(request.getFecha_compra())
+                .proveedor(proveedor)
+                .build();
+        Compra saveCompra = compraRepository.save(compra);
+        return new CompraResponse(saveCompra);
     }
 
     public List<CompraResponse> findAllByProveedorCUIL(long CUIL) throws ProveedorNotFoundException {

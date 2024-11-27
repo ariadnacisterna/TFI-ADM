@@ -16,9 +16,13 @@ import java.time.LocalDate;
 
 public class PagoResponse {
     private Integer idpago;
+
     private String metodo;
+
     private Double total;
+
     private LocalDate fecha;
+
     private FacturaResponse factura;
 
     public PagoResponse(Pago pago) {

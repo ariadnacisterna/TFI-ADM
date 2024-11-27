@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 public class PaisResponse {
     private Integer idpais;
+
     private String nombre;
 
     public PaisResponse(Pais pais) {

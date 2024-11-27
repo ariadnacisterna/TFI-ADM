@@ -12,5 +12,6 @@ import lombok.NoArgsConstructor;
 
 public class InicioSesionRequest {
     private String username;
+
     private String password;
 }

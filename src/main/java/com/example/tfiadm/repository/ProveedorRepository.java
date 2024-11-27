@@ -16,7 +16,10 @@ public interface ProveedorRepository extends JpaRepository<Proveedor, Long> {
     List<Proveedor> findProveedoresContratoCercaExpirarAndBorradoFalse(@Param("fechaLimite") LocalDate fechaLimite);
 
     Optional<Proveedor> findByCuil(Long cuil);
+
     List<Proveedor> findAllByBorradoFalse();
+
     Optional<Proveedor> findByCuilAndBorradoFalse(Long cuil);
+
     Optional<Proveedor> findByIdproveedor(Integer id);
 }

@@ -16,8 +16,10 @@ import lombok.NoArgsConstructor;
 public class Provincia {
     @Id
     private int idprovincia;
+
     @Column(nullable = false,length = 45)
     private String nombre;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pais_idpais")
     private Pais pais;

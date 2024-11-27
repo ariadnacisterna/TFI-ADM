@@ -24,14 +24,14 @@ public class Interaccion {
     @Column(nullable = false, length = 45)
     private String tipo_interaccion;
 
-    @Column(nullable = false, length = 45)
+    @Column(nullable = false, length = 254)
     private String descripcion;
 
     @Column(nullable = false)
     private LocalDate fecha;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "empleado_id")
+    @JoinColumn(name = "empleado_cuil")
     private Empleado empleado;
 
     @ManyToOne(fetch = FetchType.EAGER)

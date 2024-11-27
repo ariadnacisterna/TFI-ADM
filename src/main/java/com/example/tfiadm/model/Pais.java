@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class Pais {
     @Id
     private int idpais;
+
     @Column(nullable = false,length = 45)
     private String nombre;
 }

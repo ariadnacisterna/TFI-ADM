@@ -13,18 +13,23 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class InteraccionResponse {
     private Integer idinteraccion;
+
     private String tipo_interaccion;
+
     private String descripcion;
+
     private LocalDate fecha;
-    private Integer empleadoId;
-    private Integer clienteId;
+
+    private Long empleado_cuil;
+
+    private Long cliente_cuil;
 
     public InteraccionResponse(Interaccion interaccion) {
         this.idinteraccion = interaccion.getIdinteraccion();
         this.tipo_interaccion = interaccion.getTipo_interaccion();
         this.descripcion = interaccion.getDescripcion();
         this.fecha = interaccion.getFecha();
-        this.empleadoId = interaccion.getEmpleado() != null ? interaccion.getEmpleado().getIdempleado() : null;
-        this.clienteId = interaccion.getCliente() != null ? interaccion.getCliente().getIdcliente() : null;
+        this.empleado_cuil = interaccion.getEmpleado() != null ? interaccion.getEmpleado().getCuil() : null;
+        this.cliente_cuil = interaccion.getCliente() != null ? interaccion.getCliente().getCuil() : null;
     }
 }

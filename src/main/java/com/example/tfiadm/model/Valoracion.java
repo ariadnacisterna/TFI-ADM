@@ -24,12 +24,16 @@ public class Valoracion {
 
     @Column(nullable = false)
     private Integer calidad;
+
     @Column(nullable = false)
     private Integer puntualidad;
+
     @Column(nullable = false)
     private Integer cumplimiento;
+
     @Column(length = 200)
     private String notas;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "compra_idcompra")
     private Compra compra;

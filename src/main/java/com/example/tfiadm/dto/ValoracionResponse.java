@@ -14,9 +14,13 @@ import lombok.NoArgsConstructor;
 
 public class ValoracionResponse {
     private Integer idvaloracion;
+
     private Integer calidad;
+
     private Integer puntualidad;
+
     private Integer cumplimiento;
+
     private String notas;
 
     public ValoracionResponse(Valoracion valoracion) {

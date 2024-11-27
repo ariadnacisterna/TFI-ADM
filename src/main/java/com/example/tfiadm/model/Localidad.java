@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 public class Localidad {
     @Id
     private int idlocalidad;
+
     @Column(nullable = false,length = 45)
     private String nombre;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "provincia_idprovincia")
-        private Provincia provincia;
-
-
+    private Provincia provincia;
 }

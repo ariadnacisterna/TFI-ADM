@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 public class ProvinciaRequest {
     private String nombre;
+
     @JsonProperty("pais_idpais")
     private Integer pais_idpais;
 }

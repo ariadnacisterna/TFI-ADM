@@ -80,7 +80,6 @@ public class EmpleadoService {
         Localidad localidad = localidadRepository.findById(request.getLocalidadId())
                 .orElseThrow(() -> new LocalidadNotFoundException("Localidad not Found"));
 
-<<<<<<< HEAD
         String oldMail = empleado.getMail();
         String newMail = request.getMail();
         if (!oldMail.equals(newMail)) {
@@ -95,17 +94,7 @@ public class EmpleadoService {
         empleado.setEsGerente(request.isEsGerente());
 
         Empleado updatedEmpleado = empleadoRepository.save(empleado);
-=======
-        empleado.setNombre_completo(request.getNombre_completo());
-        empleado.setDireccion(request.getDireccion());
-        empleado.setLocalidad(localidad);
-        empleado.setMail(request.getMail());
-        empleado.setBod(request.getBod());
-        empleado.setEsGerente(request.isEsGerente());
-
-        Empleado updatedEmpleado = empleadoRepository.save(empleado);
-
->>>>>>> 3556b8b09cb73e0c5222ca712261f9e3300fa746
+        
         return new EmpleadoResponse(updatedEmpleado);
     }
 

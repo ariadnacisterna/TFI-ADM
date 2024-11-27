@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface FacturaRepository extends JpaRepository<Factura, Long> {
     Optional<Factura> findByIdfactura(Integer idfactura);
-    Optional<Factura> findByVenta_Idventa(Integer ventaId);
 
+    Optional<Factura> findByVenta_Idventa(Integer ventaId);
 }

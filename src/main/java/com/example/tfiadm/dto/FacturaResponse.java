@@ -17,10 +17,15 @@ import java.time.LocalDate;
 
 public class FacturaResponse {
     private Integer idfactura;
+
     private LocalDate fecha;
+
     private String tipo;
+
     private Double total;
+
     private Boolean estado;
+
     @JsonProperty("venta_id")
     private Integer venta;
 

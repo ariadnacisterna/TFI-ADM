@@ -35,7 +35,7 @@ public class Factura {
     @Column(nullable = false)
     private Boolean estado;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "venta_idventa")
     private Venta venta;
 

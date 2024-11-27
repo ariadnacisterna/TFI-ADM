@@ -16,7 +16,6 @@ import java.time.LocalDate;
 @Table(name = "cliente")
 
 public class Cliente {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
@@ -49,7 +48,7 @@ public class Cliente {
     @Column(nullable = false, length = 45)
     private String condicion_impositiva;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "localidad_idlocalidad")
     private Localidad localidad;
 

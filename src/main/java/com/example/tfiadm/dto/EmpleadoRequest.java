@@ -17,12 +17,18 @@ import java.time.LocalDate;
 public class EmpleadoRequest {
     @JsonProperty("CUIL")
     private Long CUIL;
+
     private String nombre_completo;
+
     private String direccion;
+
     @JsonProperty("fecha_nacimiento")
     private LocalDate bod;
+
     private String mail;
+
     @JsonProperty("localidad_id")
     private Integer localidadId;
+
     private boolean esGerente;
 }

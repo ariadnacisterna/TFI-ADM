@@ -25,24 +25,20 @@ public class InteraccionService {
     private final EmpleadoRepository empleadoRepository;
 
     public InteraccionResponse crearInteraccion(InteraccionRequest interaccionRequest) {
-        // Verifica que los IDs no sean nulos
-        if (interaccionRequest.getEmpleadoId() == null) {
-            throw new IllegalArgumentException("Los IDs de empleado no pueden ser nulos.");
+        if (interaccionRequest.getEmpleado_cuil() == null) {
+            throw new IllegalArgumentException("El cuil de empleado no pueden ser nulos.");
         }
 
-        if (interaccionRequest.getClienteId() == null) {
-            throw new IllegalArgumentException("Los IDs de cliente no pueden ser nulos.");
+        if (interaccionRequest.getCliente_cuil() == null) {
+            throw new IllegalArgumentException("El cuil de cliente no pueden ser nulos.");
         }
 
-        // Busca al empleado
-        Empleado empleado = empleadoRepository.findById(interaccionRequest.getEmpleadoId())
+        Empleado empleado = empleadoRepository.findByCuil(interaccionRequest.getEmpleado_cuil())
                 .orElseThrow(() -> new RuntimeException("Empleado no encontrado"));
 
-        // Busca al cliente
-        Cliente cliente = clienteRepository.findById(interaccionRequest.getClienteId())
+        Cliente cliente = clienteRepository.findByCuil(interaccionRequest.getCliente_cuil())
                 .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 
-        // Crea la interacción
         Interaccion interaccion = new Interaccion();
         interaccion.setTipo_interaccion(interaccionRequest.getTipo_interaccion());
         interaccion.setDescripcion(interaccionRequest.getDescripcion());
@@ -50,33 +46,35 @@ public class InteraccionService {
         interaccion.setEmpleado(empleado);
         interaccion.setCliente(cliente);
 
-        // Guarda la interacción
         interaccionRepository.save(interaccion);
 
-        // Prepara la respuesta
         InteraccionResponse response = new InteraccionResponse();
         response.setIdinteraccion(interaccion.getIdinteraccion());
         response.setTipo_interaccion(interaccion.getTipo_interaccion());
         response.setFecha(interaccion.getFecha());
         response.setDescripcion(interaccion.getDescripcion());
-        response.setEmpleadoId(empleado.getIdempleado());
-        response.setClienteId(cliente.getIdcliente()); // Asegúrate de incluir esto si es necesario
+        response.setEmpleado_cuil(empleado.getCuil());
+        response.setCliente_cuil(cliente.getCuil());
 
         return response;
     }
 
-    public List<InteraccionResponse> consultarHistorial(Long clienteId) {
-        List<Interaccion> interacciones = interaccionRepository.findByCliente_Idcliente(clienteId);
+    public List<InteraccionResponse> consultarHistorial(Long cuilCliente) {
+        List<Interaccion> interacciones = interaccionRepository.findByCliente_Cuil(cuilCliente);
+
         if (interacciones.isEmpty()) {
-            System.out.println("No se encontraron interacciones para el cliente con ID: " + clienteId);
-        } else {
-            interacciones.forEach(interaccion -> {
-                System.out.println("Interacción encontrada: " + interaccion);
-            });
+            throw new RuntimeException("No se encontraron interacciones para el cliente con cuil: " + cuilCliente);
         }
 
         return interacciones.stream()
-                .map(interaccion -> new InteraccionResponse(interaccion)) // Usar el nuevo constructor
+                .map(interaccion -> new InteraccionResponse(
+                        interaccion.getIdinteraccion(),
+                        interaccion.getTipo_interaccion(),
+                        interaccion.getDescripcion(),
+                        interaccion.getFecha(),
+                        interaccion.getEmpleado().getCuil(),
+                        interaccion.getCliente().getCuil()))
                 .collect(Collectors.toList());
     }
+
 }

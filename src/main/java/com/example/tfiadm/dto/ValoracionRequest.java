@@ -13,9 +13,13 @@ import lombok.NoArgsConstructor;
 
 public class ValoracionRequest {
     private Integer calidad;
+
     private Integer puntualidad;
+
     private Integer cumplimiento;
+
     private String notas;
+
     @JsonProperty("compra_id")
     private Integer compraId;
 }

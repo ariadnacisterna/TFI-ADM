@@ -16,16 +16,26 @@ import java.time.LocalDate;
 
 public class ClienteResponse {
     private Integer idcliente;
+
     private Long CUIL;
+
     private Long DNI;
+
     private String nombre_completo;
+
     private String direccion;
+
     private String mail;
+
     private boolean borrado;
+
     @JsonProperty("fecha_nacimiento")
     private LocalDate bod;
+
     private Long telefono;
+
     private String condicion_impositiva;
+
     @JsonProperty("localidad_id")
     private LocalidadResponse localidad;
 

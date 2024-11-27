@@ -30,17 +30,14 @@ public class GeneradorPDF {
 
         Venta venta = factura.getVenta();
 
-        // Encabezado
         Table headerTable = new Table(new float[]{1, 1});
         headerTable.setWidth(UnitValue.createPercentValue(100));
         headerTable.addCell(new Cell().add(new Paragraph("AgroTecno\nCalle 123\nYerba Buena, Tucumán.")).setBorder(null));
         headerTable.addCell(new Cell().add(new Paragraph("Fecha: " + factura.getFecha() + "\nVenta ID: " + venta.getIdventa() + "\nFactura ID: " + factura.getIdfactura())).setTextAlignment(TextAlignment.RIGHT).setBorder(null));
         document.add(headerTable);
 
-        // Datos del cliente
         document.add(new Paragraph("\nCUIL Cliente: " + venta.getCliente().getCuil() + "\nNombre Cliente: " + venta.getCliente().getNombre_completo()));
 
-        // Tabla de productos
         Table table = new Table(new float[]{1, 3, 2, 2});
         table.setWidth(UnitValue.createPercentValue(100));
         table.addHeaderCell(new Cell().add(new Paragraph("Cantidad")).setBackgroundColor(ColorConstants.LIGHT_GRAY));
@@ -57,7 +54,6 @@ public class GeneradorPDF {
 
         document.add(table);
 
-        // Total a pagar
         document.add(new Paragraph("\nTotal a pagar: " + factura.getTotal()).setTextAlignment(TextAlignment.RIGHT));
 
         document.close();
@@ -74,17 +70,14 @@ public class GeneradorPDF {
         Factura factura = pago.getFactura();
         Venta venta = factura.getVenta();
 
-        // Encabezado
         Table headerTable = new Table(new float[]{1, 1});
         headerTable.setWidth(UnitValue.createPercentValue(100));
         headerTable.addCell(new Cell().add(new Paragraph("AgroTecno\nCalle 123\nYerba Buena, Tucumán.")).setBorder(null));
         headerTable.addCell(new Cell().add(new Paragraph("Fecha: " + pago.getFecha() + "\nVenta ID: " + venta.getIdventa() + "\nFactura ID: " + factura.getIdfactura())).setTextAlignment(TextAlignment.RIGHT).setBorder(null));
         document.add(headerTable);
 
-        // Datos del cliente
         document.add(new Paragraph("\nCUIL Cliente: " + venta.getCliente().getCuil() + "\nNombre Cliente: " + venta.getCliente().getNombre_completo()));
 
-        // Detalles del pago
         document.add(new Paragraph("\nMétodo de Pago: " + pago.getMetodo()));
         document.add(new Paragraph("Total Pagado: " + pago.getTotal()));
 

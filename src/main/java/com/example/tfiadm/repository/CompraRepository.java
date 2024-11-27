@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface CompraRepository extends JpaRepository<Compra, Long> {
     List<Compra> findByProveedor_Idproveedor(Integer proveedor_idproveedor);
+
     Optional<Compra> findByIdcompra(Integer idcompra);
 }

@@ -23,7 +23,7 @@ public class ProveedorService {
     private final CompraRepository compraRepository;
     private final ProveedorRepository proveedorRepository;
     private final LocalidadRepository localidadRepository;
-    private final JavaMailSender mailSender;
+    private final EmailService emailService;
     private final EmpleadoRepository empleadoRepository;
 
     public ProveedorResponse create(ProveedorRequest request) throws CUILAlreadyInUseException, LocalidadNotFoundException, ErrorSintaxisException {
@@ -133,7 +133,7 @@ public class ProveedorService {
         return new ValoracionGeneralResponse(promedioPuntualidad,promedioCumplimiento,promedioCalidad);
     }
 
-    @Scheduled(cron = "0 30 11 * * ?")
+    @Scheduled(cron = "0 0 8 * * ?")
     public void notificarProveedoresContratoPorExpirar() {
         LocalDate fechaLimite = LocalDate.now().plusMonths(1);
         List<Proveedor> proveedores = proveedorRepository.findProveedoresContratoCercaExpirarAndBorradoFalse(fechaLimite);
@@ -141,27 +141,17 @@ public class ProveedorService {
 
         for (Proveedor proveedor : proveedores) {
             for (Empleado gerente : gerentes) {
-                sendEmail(gerente.getMail(), "Notificación de Contrato Próximo a Expirar",
-                        "Estimado " + gerente.getNombre_completo() + ",\n\n" +
-                                "Le informamos que el contrato del proveedor " + proveedor.getNombre_completo() +
-                                " está próximo a expirar el " + proveedor.getContrato_fin() + ".\n" +
-                                "Saludos,\n" +
-                                "El equipo de Administración");
+                String subject = "Notificación de Contrato Próximo a Expirar";
+                String text = "Estimado " + gerente.getNombre_completo() + ",\n\n" +
+                        "Le informamos que el contrato del proveedor " + proveedor.getNombre_completo() +
+                        " está próximo a expirar el " + proveedor.getContrato_fin() + ".\n" +
+                        "Saludos,\n" +
+                        "El equipo de Administración";
+
+                emailService.enviarMailConArchivo(
+                        gerente.getMail(), subject, text, null, null);
             }
         }
     }
 
-    private void sendEmail(String to, String subject, String text) {
-        try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(text);
-            mailSender.send(message);
-            System.out.println("Correo enviado a: " + to);
-        } catch (Exception e) {
-            System.err.println("Error al enviar el correo a " + to);
-            e.printStackTrace();
-        }
-    }
 }
