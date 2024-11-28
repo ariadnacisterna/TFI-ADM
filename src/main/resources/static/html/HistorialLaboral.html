@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial Laboral</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Styles/IndexStyle.css"> <!-- Enlace al archivo CSS personalizado -->
+    <link rel="stylesheet" href="../Styles/BuscarClienteStyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container justify-content-center">
+
+        <!-- Botón hamburguesa alineado a la izquierda -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Logo centrado -->
+        <a class="navbar-brand mx-auto" href="index.html" id="logo">
+            <img src="../img/Logo2.png" alt="Logo" width="100">
+        </a>
+
+        <!-- Contenido del menú hamburguesa (enlaces) -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="GestionarCliente.html">Gestionar Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#gestionar-proveedores">Gestionar Proveedores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#gestionar-empleados">Gestionar Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#salir">Salir</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Tabla de resultados -->
+    <div id="tabla-resultados" class="mt-4" style="display: block;">
+        <h2>Historiales del empleado</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Lugar de trabajo</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Inicio</th>
+                <th scope="col">Fecha fin</th>
+            </tr>
+            </thead>
+            <tbody id="historiales-tbody">
+            <!-- Aquí se insertarán los historiales desde JavaScript -->
+            </tbody>
+        </table>
+    </div>
+<!-- Botón para agregar un nuevo historial -->
+<div class="text-center mt-3">
+    <button id="activar-form-nuevo-historial" class="btn btn-success btn-lg">
+        <span class="material-icons">add</span> Crear Nuevo Historial
+    </button>
+</div>
+<!-- formulario para crear un nuevo historial-->
+<div id="form-crear-historial" class="mt-4" style="display: none;">
+    <form id="crear-Historial-form">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="lugarTrabajoNuevo" class="form-label">Lugar de trabajo</label>
+                <input type="text" class="form-control" id="lugarTrabajoNuevo" placeholder="Lugar de trabajo" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="rolNuevo" class="form-label">Rol</label>
+                <input type="text" class="form-control" id="rolNuevo" placeholder="Rol" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="fecha-inicio-nuevo" class="form-label">Fecha de inicio</label>
+                <input type="date" class="form-control" id="fecha-inicio-nuevo" required>
+            </div>
+
+
+        </div>
+        <button type="submit" class="btn btn-success" id="crerNuevoHistorial">Crear Historial</button>
+    </form>
+</div>
+
+
+
+
+
+    <form id="mostrar-Historial-form" style="display: none;">
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label for="lugarTrabajo" class="form-label">Lugar Trabajo</label>
+                <input type="text" class="form-control" id="LugarTrabajo" placeholder="Lugar de trabajo" required>
+            </div>
+            <!-- Rol-->
+            <div class="col-md-6 mb-3">
+                <label for="rol" class="form-label">Rol</label>
+                <input type="text" class="form-control" id="rol" placeholder="rol" required>
+            </div>
+
+            <!-- Fecha de inicio -->
+            <div class="col-md-6 mb-3">
+                <label for="fecha-inicio" class="form-label">Fecha de inicio</label>
+                <input type="date" class="form-control" id="fecha-inicio" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="fecha-fin" class="form-label">Fecha de fin</label>
+                <input type="date" class="form-control" id="fecha-fin" required>
+            </div>
+
+        </div>
+
+        <!-- Botónes -->
+        <button type="button" class="btn btn-primary" id="eliminar-boton">Eliminar Empleado</button>
+        <button type="button" class="btn btn-primary" id="modificar-boton">Modificar Empleado</button>
+
+
+
+    </form>
+
+
+<footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+        <p class="mb-1">© 2024 Plataforma de Gestión. Todos los derechos reservados.</p>
+        <p class="mb-0">Contacto: <a href="mailto:soporte@empresa.com" class="text-light">soporte@empresa.com</a> | Teléfono: <a href="tel:+1234567890" class="text-light">+123 456 7890</a></p>
+        <div class="mt-3">
+            <a href="#" class="text-light me-3"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-light me-3"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-light me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+            <a href="#" class="text-light"><i class="fab fa-instagram fa-lg"></i></a>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/HistorialLaboral.js"></script>
+
+
+
+</body>

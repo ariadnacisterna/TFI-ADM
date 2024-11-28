@@ -224,6 +224,7 @@ document.getElementById('modificar-boton').addEventListener('click', function(ev
         localidad_id: document.getElementById('localidad').value
     };
     console.log(document.getElementById('borrado').value);
+    console.log(empleadoActualizado);
 
     modificarEmpleado(empleadoActualizado,empleadoActualizado.CUIL);
 
@@ -386,3 +387,23 @@ function llenarLocalidades(localidades)
         localidadSelect.appendChild(option);
     });
 }
+
+document.getElementById('historial-boton').addEventListener('click', function(event) {
+            event.preventDefault(); // Evitar que el botón realice una acción predeterminada
+
+            // Obtener el valor de cuil2
+            const cuil = document.getElementById('cuil2').value;
+
+            if (cuil === '') {
+                alert("Por favor ingrese un CUIL válido.");
+                return;
+            }
+
+            // Ocultar el contenido de la página actual
+            document.body.style.display = 'none';
+
+            // Redirigir a la página de historial laboral con el CUIL como parámetro
+            window.location.href = `../html/HistorialLaboral.html?cuil=${encodeURIComponent(cuil)}`;
+        })
+
+

@@ -242,7 +242,7 @@ document.getElementById('modificar-boton').addEventListener('click', function(ev
         direccion: document.getElementById('direccion').value,
         condicion_impositiva: document.getElementById('condicion-impositiva').value,
         fecha_nacimiento: document.getElementById('fecha-nacimiento').value,
-        localidad_id: document.getElementById('localidad').value,
+        localidad_id: document.getElementById('localidad').value
 
     };
     console.log(clienteActualizado);

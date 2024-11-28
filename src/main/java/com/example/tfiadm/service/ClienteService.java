@@ -90,12 +90,12 @@ public class ClienteService {
     }
 
     public Cliente buscarCliente(Long cuil) throws Exception {
-        return clienteRepository.findByCuil(cuil)
+        return clienteRepository.findByCuilAndBorradoFalse(cuil)
                 .orElseThrow(() -> new Exception("Cliente no encontrado"));
     }
 
     public List<ClienteResponse> buscarClientes()  {
-        return clienteRepository.findAll().stream()
+        return clienteRepository.findAllByBorradoFalse().stream()
                 .map(ClienteResponse::new)
                 .toList();
     }
