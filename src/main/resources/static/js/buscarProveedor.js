@@ -61,7 +61,7 @@ async function mostrarProveedorEnFormulario(proveedor){
     document.getElementById('direccion').value=proveedor.direccion;
     document.getElementById('fecha-inicio').value=proveedor.contrato_inicio;
     document.getElementById('fecha-fin').value=proveedor.contrato_fin;
-    //document.getElementById('borrado').value=empleado.borrado;
+    document.getElementById('borrado').value=proveedor.borrado;
     document.getElementById('pais').value=idpais;
     document.getElementById('provincia').value=idProvincia;
     document.getElementById('localidad').value=idLocalidad;
@@ -130,7 +130,7 @@ async function eliminarProveedor(cuil) {
         });
 
         if (response.ok) {
-            alert('Empleado eliminado exitosamente!');  // Mensaje de éxito
+            alert('proveedor eliminado exitosamente!');  // Mensaje de éxito
             cargarProveedores();
         } else {
             const errorData = await response.json();  // Obtener el cuerpo de la respuesta en caso de error
@@ -155,7 +155,7 @@ async function modificarProveedor(proveedorActualizado, cuil) {
         });
 
         if (response.ok) {
-            alert('Empleado modificado exitosamente!');
+            alert('proveedor modificado exitosamente!');
             cargarProveedores();// Mensaje de éxito
         } else {
             const errorData = await response.json();  // Obtener el cuerpo de la respuesta con el mensaje de error
@@ -212,23 +212,25 @@ document.getElementById('eliminar-boton').addEventListener('click', function(eve
 
 });
 document.getElementById('modificar-boton').addEventListener('click', function(event ) {
-    // Aquí puedes agregar la lógica para modificar el empleado
-    // Por ejemplo, puedes mostrar un mensaje de alerta o abrir un modal para confirmar la modificación
+
     event.preventDefault();
-    const empleadoActualizado = {
+    const proveedorActualizado = {
         CUIL: parseInt(document.getElementById('cuil2').value),
         nombre_completo: document.getElementById('nombre').value,
         mail: document.getElementById('email').value,
         direccion: document.getElementById('direccion').value,
-        fecha_nacimiento: document.getElementById('fecha-nacimiento').value,
+        contrato_inicio: document.getElementById('fecha-inicio').value,
+        contrato_fin:document.getElementById('fecha-fin').value,
         localidad_id: document.getElementById('localidad').value
     };
     console.log(document.getElementById('borrado').value);
+    console.log(proveedorActualizado);
 
-    modificarEmpleado(empleadoActualizado,empleadoActualizado.CUIL);
+    modificarProveedor(proveedorActualizado,proveedorActualizado.CUIL);
 
 
 });
+
 
 
 //codigo de llenar paises y
@@ -386,3 +388,20 @@ function llenarLocalidades(localidades)
         localidadSelect.appendChild(option);
     });
 }
+document.getElementById('historial-boton').addEventListener('click', function(event) {
+    event.preventDefault(); // Evitar que el botón realice una acción predeterminada
+
+    // Obtener el valor de cuil2
+    const cuil = document.getElementById('cuil2').value;
+
+    if (cuil === '') {
+        alert("Por favor ingrese un CUIL válido.");
+        return;
+    }
+
+    // Ocultar el contenido de la página actual
+    document.body.style.display = 'none';
+
+    // Redirigir a la página de historial laboral con el CUIL como parámetro
+    window.location.href = `../html/HistorialCompra.html?cuil=${encodeURIComponent(cuil)}`;
+})
