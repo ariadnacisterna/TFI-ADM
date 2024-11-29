@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Compra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../Styles/IndexStyle.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container justify-content-center">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand mx-auto" href="index.html" id="logo">
+            <img src="../img/Logo2.png" alt="Logo" width="100">
+        </a>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="GestionarCliente.html">Gestionar Cliente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="GestionarProveedor.html">Gestionar Proveedores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="GestionarEmpleado.html">Gestionar Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="InicioSesion.html">Salir</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container registrar-compra-container">
+    <h1 class="text-center mb-4">Registrar VENTA</h1>
+
+    <form id="ingresar-datos-form">
+        <div class="row">
+            <!-- CUIL del Cliente -->
+            <div class="col-md-6 mb-3">
+                <label for="cuil-cliente" class="form-label">CUIL del Cliente</label>
+                <input type="text" class="form-control" id="cuil-cliente" placeholder="Ingrese CUIL del Cliente" required>
+            </div>
+
+            <!-- CUIL del Proveedor -->
+            <div class="col-md-6 mb-3">
+                <label for="cuil-empleado" class="form-label">CUIL del empleado</label>
+                <input type="text" class="form-control" id="cuil-empleado" placeholder="Ingrese CUIL del Proveedor" required>
+            </div>
+
+            <!-- Fecha -->
+            <div class="col-md-6 mb-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="fecha" required>
+            </div>
+
+            <!-- Precio -->
+            <div class="col-md-6 mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="precio" placeholder="Ingrese Precio" required>
+            </div>
+        </div>
+
+        <!-- Botón de enviar -->
+        <button type="submit" class="btn btn-primary">Registrar venta</button>
+    </form>
+
+
+
+
+
+    </form>
+</div>
+
+<!-- Pie de página con datos de contacto -->
+<footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+        <p class="mb-1">© 2024 Plataforma de Gestión. Todos los derechos reservados.</p>
+        <p class="mb-0">Contacto: <a href="mailto:soporte@empresa.com" class="text-light">soporte@empresa.com</a> | Teléfono: <a href="tel:+1234567890" class="text-light">+123 456 7890</a></p>
+        <div class="mt-3">
+            <a href="#" class="text-light me-3"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="#" class="text-light me-3"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-light me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+            <a href="#" class="text-light"><i class="fab fa-instagram fa-lg"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/Venta.js"></script>
+
+
+</body>
+</html>

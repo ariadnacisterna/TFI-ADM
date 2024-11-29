@@ -1,15 +1,124 @@
-  /* Reducir el espacio vertical de los campos */
-  .form-control,
-  .form-label {
-      font-size: 0.9rem;
-  }
+/* Configuración general */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
 
-  /* Ajuste de ancho y espaciado para los resultados */
-  .cliente-data {
-      width: 50%; /* Reducir ancho */
-      padding-right: 10px;
-  }
-  .cliente-actions {
-      width: 50%; /* Reducir ancho de los botones */
-  }
- 
+/* Navbar */
+.custom-navbar {
+    background-color: #044c44;
+    color: #fff;
+}
+
+.navbar-brand img {
+    filter: brightness(0) invert(1); /* Asegura visibilidad si el logo tiene fondo oscuro */
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    font-size: 1rem;
+    margin: 0 10px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #b2dfdb;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: #044c44;
+    color: #b2dfdb;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #b2dfdb;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Títulos */
+h1, h2, h4 {
+    color: #044c44;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #044c44;
+    border-color: #044c44;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #036e6e;
+    border-color: #036e6e;
+}
+
+/* Formularios */
+form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input, select, button {
+    font-size: 0.9rem;
+}
+
+input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #044c44;
+}
+
+.form-control {
+    border: 1px solid #b2dfdb;
+    border-radius: 5px;
+}
+
+/* Tablas */
+.table {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+    background-color: #044c44;
+    color: #fff;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Formularios responsivos */
+@media (max-width: 768px) {
+    .col-md-6 {
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

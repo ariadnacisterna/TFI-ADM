@@ -1,21 +1,67 @@
 .crear-cliente-container {
     max-width: 800px;
-    margin: auto;
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f8f9fa;
+    margin: 20px auto;
+    padding: 25px;
+    border: 1px solid #ddd; /* Borde más sutil */
+    border-radius: 10px; /* Bordes más suaves */
+    background-color: #ffffff; /* Fondo blanco limpio */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra ligera para dar profundidad */
 }
 
-/* Título y ajustes de tamaño de campo */
+/* Título */
 .crear-cliente-container h1 {
-    font-size: 1.5rem;
+    font-size: 2rem; /* Título más grande para destacar */
     margin-bottom: 20px;
+    color: #044c44; /* Color principal */
+    font-weight: bold;
+    text-align: center; /* Centrado */
 }
 
+/* Campos de entrada y botón */
 .crear-cliente-container input,
 .crear-cliente-container button {
-    padding: 8px;
-    font-size: 0.9rem;
+    width: 100%; /* Campos de ancho completo */
+    padding: 12px; /* Más espacioso */
+    font-size: 1rem; /* Fuente más grande */
+    margin-bottom: 15px; /* Espaciado entre campos */
+    border: 1px solid #ccc; /* Borde sutil */
+    border-radius: 5px; /* Bordes suaves */
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+/* Efecto hover en los campos */
+.crear-cliente-container input:focus {
+    border-color: #044c44; /* Resaltar con el color principal */
+    box-shadow: 0 0 5px rgba(4, 76, 68, 0.5); /* Resplandor suave */
+    outline: none; /* Sin contorno adicional */
+}
+
+/* Botón */
+.crear-cliente-container button {
+    background-color: #044c44; /* Color principal */
+    color: #ffffff; /* Texto blanco */
+    border: none; /* Sin borde adicional */
+    cursor: pointer; /* Mostrar cursor de clic */
+    font-weight: bold; /* Texto más llamativo */
+    text-transform: uppercase; /* Texto en mayúsculas */
+}
+
+.crear-cliente-container button:hover {
+    background-color: #036a5c; /* Tonalidad más clara al pasar el cursor */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .crear-cliente-container {
+        padding: 20px;
+    }
+
+    .crear-cliente-container h1 {
+        font-size: 1.5rem; /* Tamaño ajustado para pantallas pequeñas */
+    }
+
+    .crear-cliente-container input,
+    .crear-cliente-container button {
+        font-size: 0.95rem;
+    }
 }

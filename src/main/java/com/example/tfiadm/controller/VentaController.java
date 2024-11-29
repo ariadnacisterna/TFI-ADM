@@ -20,7 +20,7 @@ import java.util.List;
 public class VentaController {
     private final VentaService ventaService;
 
-    @PostMapping()
+    @PostMapping("/crear")
     public VentaResponse create(@RequestBody VentaRequest request) throws EmpleadoNotFoundException, ClienteNotFoundException, ErrorSintaxisException {
         return ventaService.create(request);
     }
