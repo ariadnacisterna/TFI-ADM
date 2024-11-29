@@ -97,7 +97,10 @@
 
     <form id="mostrar-Historial-form" style="display: none;">
         <div class="row">
-
+            <div class="col-md-6 mb-3">
+                <label for="id_historial" class="form-label">Id</label>
+                <input type="text" class="form-control" id="id_historial" placeholder="id historial" required>
+            </div>
             <div class="col-md-6 mb-3">
                 <label for="lugarTrabajo" class="form-label">Lugar Trabajo</label>
                 <input type="text" class="form-control" id="LugarTrabajo" placeholder="Lugar de trabajo" required>
@@ -121,9 +124,8 @@
 
         </div>
 
-        <!-- Botónes -->
-        <button type="button" class="btn btn-primary" id="eliminar-boton">Eliminar Empleado</button>
-        <button type="button" class="btn btn-primary" id="modificar-boton">Modificar Empleado</button>
+
+        <button type="button" class="btn btn-primary" id="finalizar-boton">Finalizar Historial</button>
 
 
 

@@ -68,12 +68,19 @@ function mostrarHistorialEnTabla(historiales) {
     });
 }
 async function mostrarHistorialEnFormulario(historial){
-
-
+    console.log(historial);
+    const formMostrar = document.getElementById('mostrar-Historial-form');
+    formMostrar.style.display = formMostrar.style.display === 'none' ? 'block' : 'none';
     document.getElementById('rol').value =historial.rol;
-    document.getElementById('lugarTrabajo').value=historial.lugar_trabajo;
+    document.getElementById('LugarTrabajo').value=historial.lugar_trabajo;
+    document.getElementById('id_historial').value=historial.idhistoriallaboral;
     document.getElementById('fecha-inicio').value=historial.fecha_inicio;
-    document.getElementById('fecha-fin').value=historial.fecha_fin;
+
+    if (historial.fecha_fin)
+    {
+        document.getElementById('fecha-fin').value=historial.fecha_fin;
+    }
+
 
 
 }
@@ -89,7 +96,20 @@ function obtenerDatosHistorial(id_empleado) {
 
     return historialLaboralNuevo;
 }
+function obtenerDatosHistorialModificado(id_empleado) {
+    const historialLaboralModificado = {
 
+        empleado_id:id_empleado,
+        rol: document.getElementById('rol').value,
+        lugar_trabajo:document.getElementById('LugarTrabajo').value,
+        fecha_inicio: document.getElementById('fecha-inicio').value,
+        fecha_fin:document.getElementById('fecha-fin').value,
+
+
+    };
+
+    return historialLaboralModificado;
+}
 
 
 
@@ -164,6 +184,29 @@ async function crearHistorial(historial) {
         alert('Hubo un problema al conectar con el servidor. Intente nuevamente.');
     }
 }
+async function modificarHistorial(Historial, id) {
+    try {
+        // URL para la API de modificación del empleado, con el ID del empleado a modificar
+        const response = await fetch(`http://localhost:8080/api/adm/historialLaboral/${id}`, {
+            method: 'PUT', // Usamos PUT para modificar un recurso existente
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Historial)  // Los nuevos datos del empleado a modificar, incluidos el 'cuil'
+        });
+
+        if (response.ok) {
+            alert('Historial modificado exitosamente!');
+
+        } else {
+            const errorData = await response.json();  // Obtener el cuerpo de la respuesta con el mensaje de error
+            alert('Error: ' + (errorData.message || 'Hubo un error al modificar el historial.'));
+        }
+    } catch (error) {
+        console.error('Error al hacer la solicitud:', error);
+        alert('Hubo un problema al conectar con el servidor. Intente nuevamente.');
+    }
+}
 
 document.getElementById('activar-form-nuevo-historial').addEventListener('click', function() {
     const formCrear = document.getElementById('form-crear-historial');
@@ -180,6 +223,22 @@ document.getElementById('crerNuevoHistorial').addEventListener('click', async fu
     console.log(historial_nuevo);
     await crearHistorial(historial_nuevo);
     await obtenerHistoriales(id_empleado);
+
+
+
+});
+document.getElementById('finalizar-boton').addEventListener('click', async function (event) {
+    event.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    const cuil = urlParams.get('cuil');
+    const id_historial=document.getElementById('id_historial').value;
+    console.log(cuil);
+    const id_empleado =await obtenerIdEmpleado(cuil);
+    const historial_Modificado=  obtenerDatosHistorialModificado(id_empleado);
+    console.log(historial_Modificado);
+    await modificarHistorial(historial_Modificado,id_historial);
+    cargarHistoriales();
+
 
 
 
